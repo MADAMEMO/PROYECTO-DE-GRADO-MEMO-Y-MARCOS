@@ -7,6 +7,11 @@ ConexionServ.createTables();
 $scope.ver = false;
 $scope.ver2 = false;
 
+$scope.usuario_nuevo = {
+	password: '',
+	password2: ''
+}
+
 	$scope.CREARUSUARIO = function(usuario_nuevo){
 			if (usuario_nuevo.nombres == undefined) {
 			alert('Debe poner nombres');
@@ -29,20 +34,25 @@ $scope.ver2 = false;
 			alert('Debe poner usuario');
 			return;
 		}
-			if (usuario_nuevo.password == undefined) {
-			alert('Debe poner password');
+			if (usuario_nuevo.password.length < 4) {
+			alert('Contraseña con mayor caracteres');
 			return;
 		}
 
+			if (usuario_nuevo.password == undefined) {
+			alert('Debe poner contraseña');
+			return;
+		}
 
-		if (usuario_nuevo.password != usuario_nuevo.password2 && usuario_nuevo.password==undefined) {
-			alert('Rectifique contraseña');
+		console.log(usuario_nuevo);
+		if (usuario_nuevo.password != usuario_nuevo.password2) {
+			alert('iguaesl contraseña');
 			return;
 		}
 
 		
 
-		fecha_nac = '' + usuario_nuevo.fecha_nac.getFullYear() + '-' + usuario_nuevo.fecha_nac.getMonth() + '-' + usuario_nuevo.fecha_nac.getDate();
+		fecha_nac = '' + usuario_nuevo.fecha_nac.getFullYear() + '-' + (usuario_nuevo.fecha_nac.getMonth() + 1) + '-' + (usuario_nuevo.fecha_nac.getDate() + 1);
 
 		consulta = 'INSERT INTO users (nombres, apellidos, sexo, documento, celular, fecha_nac, usuario, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?)'
 		ConexionServ.query(consulta, [usuario_nuevo.nombres, usuario_nuevo.apellidos, usuario_nuevo.sexo, usuario_nuevo.documento, usuario_nuevo.celular, fecha_nac, usuario_nuevo.usuario, usuario_nuevo.password]).then(function(result){

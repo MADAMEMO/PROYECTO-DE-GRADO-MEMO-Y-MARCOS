@@ -28,8 +28,8 @@ app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ){
 	$scope.guardarc = function(carrera_nuevo){
 
 		 
-		fecha_inicio = '' + carrera_nuevo.fecha_ini.getFullYear() + '-' + carrera_nuevo.fecha_ini.getMonth() + '-' + carrera_nuevo.fecha_ini.getDate();
-		fecha_fin = '' + carrera_nuevo.fecha_fin.getFullYear() + '-' + carrera_nuevo.fecha_ini.getMonth() + '-' + carrera_nuevo.fecha_ini.getDate();
+		fecha_inicio = '' + carrera_nuevo.fecha_ini.getFullYear() + '-' + (carrera_nuevo.fecha_ini.getMonth() + 1 )    + '-' + carrera_nuevo.fecha_ini.getDate();
+		fecha_fin = '' + carrera_nuevo.fecha_fin.getFullYear() + '-' +  (  carrera_nuevo.fecha_ini.getMonth()  +1 ) + '-' + (carrera_nuevo.fecha_ini.getDate() + 1	);
 		
 
 		consulta = 'INSERT INTO carreras (taxi_id, taxista_id, fecha_ini, lugar_inicio, lugar_fin, fecha_fin, estado) VALUES(?, ?, ?, ?, ?, ?, ?)'

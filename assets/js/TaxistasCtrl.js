@@ -34,12 +34,24 @@ $scope.ver2 = false;
 			return;
 		}
 
-		if (taxista_nuevo.password != taxista_nuevo.password2 && taxista_nuevo.password==undefined) {
-			alert('Rectifique contraseña');
+				if (taxista_nuevo.password.length < 4) {
+			alert('Contraseña con mayor caracteres');
 			return;
 		}
 
-		fecha_nac = '' + taxista_nuevo.fecha_nac.getFullYear() + '-' + taxista_nuevo.fecha_nac.getMonth() + '-' + taxista_nuevo.fecha_nac.getDate();	
+			if (taxista_nuevo.password == undefined) {
+			alert('Debe poner contraseña');
+			return;
+		}
+
+		console.log(taxista_nuevo);
+		if (taxista_nuevo.password != taxista_nuevo.password2) {
+			alert('iguaesl contraseña');
+			return;
+		}
+
+
+		fecha_nac = '' + taxista_nuevo.fecha_nac.getFullYear() + '-' + (taxista_nuevo.fecha_nac.getMonth() + 1) + '-' + (taxista_nuevo.fecha_nac.getDate() + 1);	
 
 		consulta = 'INSERT INTO taxistas (nombres, apellidos, sexo, documento, celular, fecha_nac, usuario, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?)'
 		ConexionServ.query(consulta, [taxista_nuevo.nombres, taxista_nuevo.apellidos, taxista_nuevo.sexo, taxista_nuevo.documento, taxista_nuevo.celular, fecha_nac, taxista_nuevo.usuario, taxista_nuevo.password]).then(function(result){
