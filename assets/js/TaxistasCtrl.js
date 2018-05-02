@@ -29,12 +29,12 @@ $scope.ver2 = false;
 			alert('Debe poner usuario');
 			return;
 		}
-			if (taxista_nuevo.password == undefined) {
+		if (taxista_nuevo.password == undefined) {
 			alert('Debe poner password');
 			return;
 		}
 
-				if (taxista_nuevo.password.length < 4) {
+		if (taxista_nuevo.password.length < 4) {
 			alert('Contraseña con mayor caracteres');
 			return;
 		}

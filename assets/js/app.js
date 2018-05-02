@@ -42,7 +42,14 @@ angular.module('TaxisFast', ['ui.router'])
 			templateUrl: 'templates/carreras.html'
 
 		})
+			.state('login',{
+					name: 'login',
+					url: '/login',
+					controller: 'LoginCtrl',
+					templateUrl: 'templates/login.html'
 
-	   $urlRouterProvider.otherwise('/panel');	
+				})
+
+	   $urlRouterProvider.otherwise('/login');	
 
 }])
