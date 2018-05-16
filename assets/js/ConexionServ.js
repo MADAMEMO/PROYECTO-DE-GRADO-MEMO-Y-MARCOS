@@ -13,7 +13,8 @@ angular.module('TaxisFast')
                 "sexo varchar(1)  NOT NULL," +
                 "fecha_nac date DEFAULT NULL," +
                 "celular varchar(20) DEFAULT NULL," +
-                "documento varchar(100)  NOT NULL collate nocase,"+
+                "documento varchar(100)  NULL collate nocase,"+
+                "tipo varchar(100)  NOT NULL collate nocase," + 
                 "usuario varchar(100)  NOT NULL collate nocase,"+
                 "password varchar(100)  NOT NULL collate nocase)";
 
@@ -21,24 +22,26 @@ angular.module('TaxisFast')
                 "nombres varchar(100)  NOT NULL collate nocase," +
                 "apellidos varchar(100)  DEFAULT NULL collate nocase," +
                 "sexo varchar(1)  NOT NULL," +
-                "taxi_id varchar(100)  collate nocase," +
+               
                 "celular varchar(20) DEFAULT NULL," +
                 "fecha_nac date DEFAULT NULL," +
-                "documento varchar(100)  NOT NULL collate nocase,"+
+                "documento varchar(100)  NULL collate nocase,"+
                 "usuario varchar(100)  NOT NULL collate nocase,"+
-                "password varchar(100)  NOT NULL collate nocase)";
+                "password varchar(100)  NULL collate nocase)";
 
 
   sqltaxis = "CREATE TABLE IF NOT EXISTS taxis (id integer," +
-                "modelos varchar(100)  NOT NULL collate nocase," +
-                "placas varchar(100)  DEFAULT NULL collate nocase," +
+                "modelo varchar(100)  NOT NULL collate nocase," +
+                "placa varchar(100)  DEFAULT NULL collate nocase," +
                 "taxista_id varchar(100)  DEFAULT NULL collate nocase," +
+                "propietario varchar(100)  DEFAULT NULL collate nocase," +
                 "Soat varchar(100)  DEFAULT NULL collate nocase," +
                 "Seguro varchar(100)  DEFAULT NULL collate nocase)";
 
   sqlcarreras = "CREATE TABLE IF NOT EXISTS carreras (id integer," +
                 "taxi_id varchar(100)  NOT NULL collate nocase," +
                 "taxista_id varchar(100)  DEFAULT NULL collate nocase," +
+                "zona varchar(100)  NOT NULL collate nocase,"+
                 "fecha_ini date DEFAULT NULL," +
                 "lugar_inicio varchar(100) DEFAULT NULL,"+
                  "lugar_fin varchar(100) DEFAULT NULL,"+

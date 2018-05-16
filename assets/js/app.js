@@ -1,4 +1,21 @@
-angular.module('TaxisFast', ['ui.router'])
+angular.module('TaxisFast', [
+	'ngSanitize', 
+	'ngTouch',
+	'ngAnimate',
+	'ui.router', 
+	'ui.bootstrap',
+	'ui.select',
+	'ui.grid',
+	'ui.grid.edit',
+	'ui.grid.resizeColumns',
+	'ui.grid.exporter',
+	'ui.grid.selection',
+	'ui.grid.cellNav',
+	'ui.grid.autoResize',
+	'ui.grid.pinning',
+	'ui.grid.expandable',
+	'ui.grid.moveColumns'
+])
 
 
 .config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $urlRouterProvider ){
@@ -9,7 +26,16 @@ angular.module('TaxisFast', ['ui.router'])
 			name: 'panel',
 			url: '/panel',
 			controller: 'PanelCtrl',
-			templateUrl: 'templates/panel.html'
+			templateUrl: 'templates/panel.html',
+			resolve: {
+				USER: ['AuthServ', '$state', function(AuthServ, $state){
+					return AuthServ.verificar_user_logueado().then(function(u){
+						return u;
+					}, function(){
+						$state.go('login');
+					});
+			}]
+		}
 
 		})
 		.state('panel.taxistas',{
@@ -40,6 +66,13 @@ angular.module('TaxisFast', ['ui.router'])
 			url: '/carreras',
 			controller: 'CarrerasCtrl',
 			templateUrl: 'templates/carreras.html'
+
+		})
+	     .state('panel.perfil',{
+			name: 'perfil',
+			url: '/perfil',
+			controller: 'perfilCtrl',
+			templateUrl: 'templates/perfil.html'
 
 		})
 			.state('login',{

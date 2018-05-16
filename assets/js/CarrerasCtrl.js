@@ -4,11 +4,16 @@ app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ){
 
 	ConexionServ.createTables();
 
+
+	$scope.carrera_nuevo = {
+		zona: 'Z1'
+	};
+	
+
 	$scope.ver = false;
 	$scope.ver2 = true;
 	$scope.vercarreras = false;
 
-		
 		consulta = 'SELECT *, rowid FROM taxistas';
 		ConexionServ.query(consulta, []).then(function(result){
 			$scope.taxistas = result;
@@ -23,18 +28,26 @@ app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ){
 		}, function(tx){
 			console.log('error', tx);
 		});
-	
+		
+
 
 	$scope.guardarc = function(carrera_nuevo){
 
+
 		 
 		fecha_inicio = '' + carrera_nuevo.fecha_ini.getFullYear() + '-' + (carrera_nuevo.fecha_ini.getMonth() + 1 )    + '-' + carrera_nuevo.fecha_ini.getDate();
-		fecha_fin = '' + carrera_nuevo.fecha_fin.getFullYear() + '-' +  (  carrera_nuevo.fecha_ini.getMonth()  +1 ) + '-' + (carrera_nuevo.fecha_ini.getDate() + 1	);
-		
+		fecha_fin = '' + carrera_nuevo.fecha_fin.getFullYear() + '-' +  (  carrera_nuevo.fecha_ini.getMonth()  +1 ) + '-' + carrera_nuevo.fecha_ini.getDate();
+	
+		hora_inicio = '' + carrera_nuevo.hora_ini.getHours() + ':' +    carrera_nuevo.hora_ini.getMinutes();   //+ (carrera_nuevo.hora_ini.getHours() >= 12 ? "PM" : "AM");
+		hora_final = '' + carrera_nuevo.hora_fin.getHours() + ':' +    carrera_nuevo.hora_fin.getMinutes();   //+ (carrera_nuevo.hora_fin.getHours() >= 12 ? "PM" : "AM");
+	
+		fechayhora_inicio 	= fecha_inicio  + ' ' + hora_inicio;
+		fechayhora_fin 		= fecha_fin 	+ ' ' + hora_final;
 
-		consulta = 'INSERT INTO carreras (taxi_id, taxista_id, fecha_ini, lugar_inicio, lugar_fin, fecha_fin, estado) VALUES(?, ?, ?, ?, ?, ?, ?)'
-		ConexionServ.query(consulta, [carrera_nuevo.taxi_id, carrera_nuevo.taxista_id, fecha_inicio, carrera_nuevo.lugar_inicio, carrera_nuevo.lugar_fin, fecha_fin, carrera_nuevo.estado]).then(function(result){
+		consulta = 'INSERT INTO carreras (taxi_id, taxista_id, zona, fecha_ini, lugar_inicio, lugar_fin, fecha_fin, estado) VALUES(?, ?, ?, ?, ?, ?, ?, ?)'
+		ConexionServ.query(consulta, [carrera_nuevo.taxi.rowid,  carrera_nuevo.taxista.rowid, carrera_nuevo.zona, fechayhora_inicio, carrera_nuevo.lugar_inicio, carrera_nuevo.lugar_fin, fechayhora_fin, carrera_nuevo.estado]).then(function(result){
 			console.log('se guardo la carrera papi', result);
+					console.log(carrera_nuevo.taxi);
 			$scope.traer_datos()
 		}, function(tx){
 			console.log('error', tx);
@@ -63,7 +76,10 @@ $scope.traer_datos = function(){
 
   $scope.traer_datos = function(){ 
 
-	consulta = 'SELECT c.*, c.rowid, t.nombres, t.apellidos, tx.placas from carreras c INNER JOIN taxistas t ON c.taxista_id = t.rowid INNER JOIN taxis tx ON c.taxi_id = tx.rowid'
+	consulta = 'SELECT c.*, c.rowid, t.nombres, t.apellidos, tx.placa from carreras c ' + 
+				'INNER JOIN taxistas t ON c.taxista_id = t.rowid ' + 
+				'INNER JOIN taxis tx ON c.taxi_id = tx.rowid ' +
+				'order by c.rowid desc';
 	ConexionServ.query(consulta, []).then(function(result){
 		$scope.carreras = result;
 			for (var i = 0; i < $scope.carreras.length; i++) {
@@ -71,7 +87,7 @@ $scope.traer_datos = function(){
 				$scope.carreras[i].fecha_fin = new Date($scope.carreras[i].fecha_fin);
 			}
 
-			console.log('se subio la carrera', result);
+			console.log('se trajeron las carreras',result);
 
 		}, function(tx){
 			console.log('error', tx);
@@ -81,6 +97,7 @@ $scope.traer_datos = function(){
 	}
 
 	$scope.traer_datos()
+
 
 	$scope.eliminar = function(rowid){
 		consulta = 'DELETE FROM carreras Where rowid=?'
@@ -120,8 +137,8 @@ $scope.traer_datos = function(){
 
 	$scope.guardarcarrera = function(carrera_Editar){
 		
-		consulta = 'UPDATE carreras SET  taxi_id=?, taxista_id=?, fecha_ini=?, lugar_inicio=?, lugar_fin=?, fecha_fin=?, estado=? where rowid=? '
-		ConexionServ.query(consulta, [carrera_Editar.taxi_id, carrera_Editar.taxista_id, carrera_Editar.fecha_ini, carrera_Editar.lugar_inicio, carrera_Editar.lugar_fin, carrera_Editar.fecha_fin, carrera_Editar.estado, carrera_Editar.rowid]).then(function(result){
+		consulta = 'UPDATE carreras SET  taxi_id=?, taxista_id=?, zona=?, fecha_ini=?, lugar_inicio=?, lugar_fin=?, fecha_fin=?, estado=? where rowid=? '
+		ConexionServ.query(consulta, [carrera_Editar.taxi, carrera_Editar.taxista, carrera_Editar.zona, carrera_Editar.fecha_ini, carrera_Editar.lugar_inicio, carrera_Editar.lugar_fin, carrera_Editar.fecha_fin, carrera_Editar.estado, carrera_Editar.rowid]).then(function(result){
 			console.log('se cargo la carrera', result);
 
 $scope.traer_datos()
@@ -142,6 +159,7 @@ $scope.modificarcarrera =function(carrera){
 	$scope.carrera_estado = carrera;
 
 }
+
 
 
 	$scope.en_curso = function(carrera_estado){

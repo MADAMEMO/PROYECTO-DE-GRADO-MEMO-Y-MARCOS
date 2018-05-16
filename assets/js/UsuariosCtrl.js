@@ -26,6 +26,10 @@ $scope.usuario_nuevo = {
 			alert('Debe poner sexo');
 			return;
 		}
+		if (usuario_nuevo.tipo == undefined) {
+			alert('Debe poner tipo');
+			return;
+		}
 		if (usuario_nuevo.documento == undefined) {
 			alert('Debe poner documento');
 			return;
@@ -52,10 +56,10 @@ $scope.usuario_nuevo = {
 
 		
 
-		fecha_nac = '' + usuario_nuevo.fecha_nac.getFullYear() + '-' + (usuario_nuevo.fecha_nac.getMonth() + 1) + '-' + (usuario_nuevo.fecha_nac.getDate() + 1);
+		fecha_nac = '' + usuario_nuevo.fecha_nac.getFullYear() + '-' + (usuario_nuevo.fecha_nac.getMonth() + 1) + '-' + usuario_nuevo.fecha_nac.getDate();
 
-		consulta = 'INSERT INTO users (nombres, apellidos, sexo, documento, celular, fecha_nac, usuario, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?)'
-		ConexionServ.query(consulta, [usuario_nuevo.nombres, usuario_nuevo.apellidos, usuario_nuevo.sexo, usuario_nuevo.documento, usuario_nuevo.celular, fecha_nac, usuario_nuevo.usuario, usuario_nuevo.password]).then(function(result){
+		consulta = 'INSERT INTO users (nombres, apellidos, sexo, tipo, documento, celular, fecha_nac, usuario, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)'
+		ConexionServ.query(consulta, [usuario_nuevo.nombres, usuario_nuevo.apellidos, usuario_nuevo.sexo, usuario_nuevo.tipo, usuario_nuevo.documento, usuario_nuevo.celular, fecha_nac, usuario_nuevo.usuario, usuario_nuevo.password]).then(function(result){
 			console.log('se cargo el usuario', result);
 				$scope.traer_datos()
 		}, function(tx){
@@ -72,7 +76,7 @@ $scope.usuario_nuevo = {
  
   }
   $scope.traer_datos = function(){
-	consulta = 'SELECT nombres, apellidos, sexo, documento, celular, fecha_nac, usuario, password, rowid from users'
+	consulta = 'SELECT nombres, apellidos, sexo, tipo, documento, celular, fecha_nac, usuario, password, rowid from users'
 	ConexionServ.query(consulta, []).then(function(result){
 		$scope.usuarios = result;
 		for (var i = 0; i < $scope.usuarios.length; i++) {
@@ -129,8 +133,8 @@ $scope.usuario_nuevo = {
 		}
 
 
-		consulta = 'UPDATE users SET  nombres=?, apellidos=?, sexo=?, documento=?, celular=?, fecha_nac=?, usuario=?, password=? where rowid=? '
-		ConexionServ.query(consulta, [usuario_Editar.nombres, usuario_Editar.apellidos, usuario_Editar.sexo, usuario_Editar.documento, usuario_Editar.celular, usuario_Editar.fecha_nac, usuario_Editar.usuario, usuario_Editar.password, usuario_Editar.rowid]).then(function(result){
+		consulta = 'UPDATE users SET  nombres=?, apellidos=?, sexo=?, tipo=?, documento=?, celular=?, fecha_nac=?, usuario=?, password=? where rowid=? '
+		ConexionServ.query(consulta, [usuario_Editar.nombres, usuario_Editar.apellidos, usuario_Editar.sexo, usuario_Editar.tipo, usuario_Editar.documento, usuario_Editar.celular, usuario_Editar.fecha_nac, usuario_Editar.usuario, usuario_Editar.password, usuario_Editar.rowid]).then(function(result){
 			console.log('se cargo el usuario', result);
 				$scope.traer_datos()
 		}, function(tx){

@@ -1,20 +1,23 @@
         
  
-    <aside id="left-panel" class="left-panel">
+    <aside id="left-panel" class="left-panel no-print">
         <nav class="navbar navbar-expand-sm navbar-default">
 
             <div class="navbar-header">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand">BIENVENIDO</a>
+                <a class="navbar-brand" class="no-print">TAXI DRIVER
+              
+                </a>
+
                 <a class="navbar-brand hidden" href="./"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a ui-sref="panel"> <i class="menu-icon fa fa-dashboard"></i>Inicio </a>
+                        <a ui-sref="panel"> <i class="menu-icon fa fa-dashboard"></i>INICIO </a>
                     </li>
                         <li>
                                 <a ui-sref="panel.carreras">
@@ -28,20 +31,20 @@
 
                            </li>
                          
-                    <h3 class="menu-title">CONFIGURACIONES</h3><!-- /.menu-title -->
+                    <h3 class="menu-title">GEOLOCALIZACION</h3><!-- /.menu-title -->
                            
 
                        
 
 
-                         <li>
+                         <li ng-show="USER.tipo == 'Admin'">
                             <a ui-sref="panel.usuarios"> 
                                 <i class="fa fa-user "></i>
                                 USUARIOS
                             </a>
                         </li>
 
-                        <li>
+                        <li ng-show="USER.tipo == 'Admin'">
                             
                             <a ui-sref="panel.taxistas">
                                 <i class="  fa fa-address-card-o"></i>
@@ -51,22 +54,17 @@
 
 
 
-                         <li>
+                         <li ng-show="USER.tipo == 'Admin'">
                             <a ui-sref="panel.taxis">
                                 <i class="fa fa-cab"> TAXIS</i>
 
                             </a>
 
-
-
-
-
-
                          </li>
                        
                     
 
-                    <h3 class="menu-title">GEOLOCALIZACION</h3><!-- /.menu-title -->
+                    <h3 ng-show="USER.tipo == 'Admin'" class="menu-title">GEOLOCALIZACION</h3><!-- /.menu-title -->
 
                     
                     <li class="menu-item-has-children dropdown">
@@ -75,9 +73,9 @@
                             <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
                          
                         </ul>
-                    </li>
-                    <h3 class="menu-title">Extras</h3><!-- /.menu-title -->
-                    <li class="menu-item-has-children dropdown">
+                    </li >
+                    <h3 ng-show="USER.tipo == 'Admin'" class="menu-title">Extras</h3><!-- /.menu-title -->
+                    <li ng-show="USER.tipo == 'Admin'" class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Login</a></li>
@@ -133,99 +131,80 @@
                       </div>
                     </div>
 
-                    <div class="dropdown for-message">
-                      <button class="btn btn-secondary dropdown-toggle" type="button"
-                            id="message"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="ti-email"></i>
-                        <span class="count bg-primary">9</span>
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="message">
-                        <p class="red">You have 4 Mails</p>
-                        <a class="dropdown-item media bg-flat-color-1" href="#">
-                            <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg"></span>
-                            <span class="message media-body">
-                                <span class="name float-left">Jonathan Smith</span>
-                                <span class="time float-right">Just now</span>
-                                    <p>Hello, this is an example msg</p>
-                            </span>
-                        </a>
-                        <a class="dropdown-item media bg-flat-color-4" href="#">
-                            <span class="photo media-left"><img alt="avatar" src="images/avatar/2.jpg"></span>
-                            <span class="message media-body">
-                                <span class="name float-left">Jack Sanders</span>
-                                <span class="time float-right">5 minutes ago</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur</p>
-                            </span>
-                        </a>
-                        <a class="dropdown-item media bg-flat-color-5" href="#">
-                            <span class="photo media-left"><img alt="avatar" src="images/avatar/3.jpg"></span>
-                            <span class="message media-body">
-                                <span class="name float-left">Cheryl Wheeler</span>
-                                <span class="time float-right">10 minutes ago</span>
-                                    <p>Hello, this is an example msg</p>
-                            </span>
-                        </a>
-                        <a class="dropdown-item media bg-flat-color-3" href="#">
-                            <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg"></span>
-                            <span class="message media-body">
-                                <span class="name float-left">Rachel Santos</span>
-                                <span class="time float-right">15 minutes ago</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur</p>
-                            </span>
-                        </a>
-                      </div>
-                    </div>
                 </div>
             </div>
 
             <div class="col-sm-5">
-                <div class="user-area dropdown float-right">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="user-area dropdown float-right" uib-dropdown>
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
                     </a>
 
-                    <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                    <div uib-dropdown-menu class="user-menu dropdown-menu">
+                            <a class="nav-link" ui-sref="panel.perfil" ><i class="fa fa-user"></i>Perfil</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
+                            <a class="nav-link" href="" ng-click=""><i class="fa fa-cog"></i>Configuración</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="" ng-click="cerrar_sesion()"><i class="fa fa-power-off"></i>Cerrar sesión</a>
                     </div>
                 </div>
-
-                <div class="language-select dropdown" id="language-select">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
-                        <i class="flag-icon flag-icon-us"></i>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="language" >
-                        <div class="dropdown-item">
-                            <span class="flag-icon flag-icon-fr"></span>
-                        </div>
-                        <div class="dropdown-item">
-                            <i class="flag-icon flag-icon-es"></i>
-                        </div>
-                        <div class="dropdown-item">
-                            <i class="flag-icon flag-icon-us"></i>
-                        </div>
-                        <div class="dropdown-item">
-                            <i class="flag-icon flag-icon-it"></i>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+        
         </div>
 
-    </header><!-- /header -->
-    <!-- Header-->
+
+    </header>
 
 
 
-    <div ui-view></div>
+
+  <div ui-view>
+      
+
+
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+                <div class="page-title">
+                    <h1></h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li class="active">Bienvenido       {{USER.usuario}}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content mt-3">
+
+        <div class="col-sm-12">
+            
+
+
+            
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+  </div>
+
+
+
 
 
 
 </div> <!-- .content -->
+

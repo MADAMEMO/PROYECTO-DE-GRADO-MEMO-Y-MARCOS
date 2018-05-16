@@ -2248,3 +2248,18 @@ header .form-inline {
 .btn-estado:disabled {
     background: #b7b7b7;
 }
+.ui-select-container{
+    border: 1px solid #ccc;
+}
+.sin-negrillas label{
+  font-weight: normal;
+}
+
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}

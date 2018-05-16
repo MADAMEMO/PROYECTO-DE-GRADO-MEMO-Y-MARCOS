@@ -1,34 +1,29 @@
- <
-<div class="breadcrumbs">
-<div class="col-sm-4">
-    <div class="page-header float-left">
-        <div class="page-title">
-            <h1>Dashboard</h1>
+
+
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+                <div class="page-title">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li class="active">Bienvenido       {{USER.usuario}} </li>
+                    </ol>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 
-<div class="content mt-3">
+    <div class="content mt-3">
 
-  <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>USUARIOS</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="col-sm-12">
+            
 
-<hr>
+
         
               <div class="content mt-3"  ng-show="ver2">
                   <div class="card">
@@ -51,6 +46,11 @@
                       <div class="col-sm-2">Sexo: </div> 
                        <input type="radio" name="gender" value="M" ng-model="usuario_nuevo.sexo">Masculino<br>
                            <input type="radio" name="gender" value="F" ng-model="usuario_nuevo.sexo">Femenino<br>
+                      </div>
+                        <div class="row">
+                          <div class="col-sm-2">Tipo: </div> 
+                       <input type="radio" name="sa" value="Administrador" ng-model="usuario_nuevo.tipo">Administrador<br>
+                           <input type="radio" name="sa" value="Operador" ng-model="usuario_nuevo.tipo">Operador<br>
                       </div>
                       <div class="row">
                       <div class="col-sm-2">Documentos: </div>
@@ -86,15 +86,17 @@
                 </div>
               </div>
     
-<hr>
+   
+
+
+                <div class="content mt-3">
 
           <button   class="btn btn-primary"  ng-click="mostrartabla()">Crear Usuario</button>
 
 
-             
 
-
-                <div class="content mt-3">
+          
+          <hr>
                     <div class="card">
                         <div class="card-header">
                             <strong class="card-title">Tabla Usuario</strong>
@@ -107,6 +109,7 @@
                                   <th scope="col">Nombres</th>
                                   <th scope="col">Apellidos</th>
                                   <th scope="col">Sexo</th>
+                                     <th scope="col">Tipo</th>
                                   <th scope="col">Documento</th>
                                   <th scope="col">Celular</th>
                                   <th scope="col">Fecha De Nacimiento</th>
@@ -122,6 +125,7 @@
                                   <td>{{usuario.nombres}}</td>
                                   <td>{{usuario.apellidos}}</td>
                                   <td>{{usuario.sexo}}</td>
+                                     <td>{{usuario.tipo}}</td>
                                   <TD>{{usuario.documento}}</TD>
                                    <TD>{{usuario.celular}}</TD>
                                   <TD>{{usuario.fecha_nac | date:'dd/MM/yyyy'}}</TD>
@@ -166,6 +170,11 @@
                       <div class="col-sm-2">Sexo: </div> 
                        <input type="radio" name="gender" value="M" ng-model="usuario_Editar.sexo">Masculino<br>
                            <input type="radio" name="gender" value="F" ng-model="usuario_Editar.sexo">Femenino<br>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-2">Tipo: </div> 
+                       <input type="radio" name="sa" value="Administrador" ng-model="usuario_Editar.tipo">Administrador<br>
+                           <input type="radio" name="sa" value="Operador" ng-model="usuario_Editar.tipo">Operador<br>
                       </div>
                         <div class="row">
                         <div class="col-sm-2">Documento: </div>

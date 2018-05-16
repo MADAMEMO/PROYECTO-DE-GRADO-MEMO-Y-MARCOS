@@ -19,10 +19,7 @@ $scope.ver2 = false;
 			alert('Debe poner placas');
 			return;
 		}
-		if (taxi_nuevo.taxista_id == undefined) {
-			alert('Debe poner el taxista de ese carro');
-			return;
-		}
+	
 		if (taxi_nuevo.Soat == undefined) {
 			alert('Debe poner Soat');
 			return;
@@ -33,8 +30,8 @@ $scope.ver2 = false;
 		}
 	
 
-		consulta = 'INSERT INTO taxis (modelos, placas, taxista_id, Soat, Seguro) VALUES(?, ?, ?, ?, ?)'
-		ConexionServ.query(consulta, [taxi_nuevo.modelos, taxi_nuevo.placas, taxi_nuevo.taxista_id, taxi_nuevo.Soat, taxi_nuevo.Seguro]).then(function(result){
+		consulta = 'INSERT INTO taxis (modelo, placa, taxista_id, propietario, Soat, Seguro) VALUES(?, ?, ?, ?, ?, ?)'
+		ConexionServ.query(consulta, [taxi_nuevo.modelos, taxi_nuevo.placas, taxi_nuevo.taxista_id, taxi_nuevo.propietario	,  taxi_nuevo.Soat, taxi_nuevo.Seguro]).then(function(result){
 			console.log('se cargo el taxi', result);
 			$scope.traer_datos()
 		}, function(tx){
@@ -51,8 +48,7 @@ $scope.ver2 = false;
    } else{$scope.ver2 = false;}; 
  
   }
-
-  $scope.traer_datos = function(){ 
+ $scope.traer_datos = function(){ 
 
 	consulta = 'SELECT t.*, t.rowid, c.nombres, c.apellidos 	from taxis t INNER JOIN taxistas c ON t.taxista_id = c.rowid'
 		ConexionServ.query(consulta, []).then(function(result){
@@ -116,8 +112,8 @@ $scope.ver2 = false;
 	$scope.guardartaxi = function(taxi_Editar){
 
 		
-		consulta = 'UPDATE taxis SET modelos=?, placas=?, taxista_id=?, Soat=?, Seguro=? where rowid=? '
-		ConexionServ.query(consulta, [taxi_Editar.modelos, taxi_Editar.placas, taxi_Editar.taxista_id, taxi_Editar.Soat, taxi_Editar.Seguro, taxi_Editar.rowid]).then(function(result){
+		consulta = 'UPDATE taxis SET modelo=?, placa=?, taxista_id=?, propietario=?, Soat=?, Seguro=? where rowid=? '
+		ConexionServ.query(consulta, [taxi_Editar.modelos, taxi_Editar.placas,  taxi_Editar.taxista_id, taxi_Editar.propietario, taxi_Editar.Soat, taxi_Editar.Seguro, taxi_Editar.rowid]).then(function(result){
 			console.log('se cargo el taxi', result);
 
 		}, function(tx){

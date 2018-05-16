@@ -1,34 +1,28 @@
-<
-<div class="breadcrumbs">
-<div class="col-sm-4">
-    <div class="page-header float-left">
-        <div class="page-title">
-            <h1>RADIO TAXI</h1>
+
+
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+                <div class="page-title">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li class="active">Bienvenido       {{USER.usuario}} </li>
+                    </ol>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 
-<div class="content mt-3">
+    <div class="content mt-3">
 
-  <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>TAXIS</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="col-sm-12">
+            
 
-<hr>
               <div class="content mt-3"  ng-show="ver2">
                 <div class="card">
                   <div class="card-header">
@@ -46,6 +40,11 @@
                           <div class="col-sm-2">Placa: </div>
                           <input  placeholder="Placa" class="col-sm-4 form-control" type="text"  ng-model="taxi_nuevo.placas"  name="">
                         </div>
+                         <div class="row">
+                          <div class="col-sm-2">Propietario: </div>
+                          <input  placeholder="Placa" class="col-sm-4 form-control" type="text"  ng-model="taxi_nuevo.propietario"  name="">
+                        </div>
+
 
                         <div class="row">
                           <div class="col-sm-2">Conductor: </div>
@@ -71,15 +70,17 @@
             </div>
         </div>
     
-<hr>
 
-          <button   class="btn btn-primary"  ng-click="mostrartabla()">CREAR TAXI</button>
+
+        
 
 
              
 
 
                 <div class="content mt-3">
+                    <button   class="btn btn-primary"  ng-click="mostrartabla()">CREAR TAXI</button>
+                    <hr>
                     <div class="card">
                         <div class="card-header">
                             <strong class="card-title">TABLA TAXI</strong>
@@ -91,6 +92,7 @@
                                   <th scope="col">#</th>
                                   <th scope="col">Modelo</th>
                                   <th scope="col">Placa</th>
+                                 <th scope="col">Propietario</th>
                                   <th scope="col">Conductor</th>
                                   <th scope="col">Soat</th>
                                   <th scope="col">Seguro</th>
@@ -101,8 +103,9 @@
                               <tbody>
                                 <tr ng-repeat="taxi in taxis">
                                   <th scope="row">{{taxi.rowid}}</th>
-                                   <td>{{taxi.modelos}}</td>
-                                  <td>{{taxi.placas}}</td>
+                                   <td>{{taxi.modelo}}</td>
+                                  <td>{{taxi.placa}}</td>
+                                    <td>{{taxi.propietario}}</td>
                                   <td>{{taxi.nombres}} {{taxi.apellidos}} </td>
                                   <td>{{taxi.Soat}}</td>
                                   <TD>{{taxi.Seguro}}</TD>
@@ -130,15 +133,19 @@
                 <div class="card-body">
                 <form>
 
-                  <div >
+                  <div class="row">
                     <div class="col-sm-2">Modelo: </div>
                     <input placeholder="Modelo" class="col-sm-4 form-control" type="text" ng-model="taxi_Editar.modelos">
                   </div>
 
-                  <div>
+                  <div class="row">
                     <div class="col-sm-2">Placa: </div>
                     <input  placeholder="Placa" class="col-sm-4 form-control" type="text"  ng-model="taxi_Editar.placas"  name="">
                   </div>
+                   <div class="row">
+                          <div class="col-sm-2">Propietario: </div>
+                          <input  placeholder="Placa" class="col-sm-4 form-control" type="text"  ng-model="taxi_Editar.propietario"  name="">
+                        </div>
 
                 <div class="row">
                     <div class="col-sm-2">Conductor: </div>
@@ -146,11 +153,11 @@
                       <option value="{{taxista.rowid}}" ng-repeat="taxista in taxistas">{{taxista.nombres}}   {{taxista.apellidos}}</option>
                     </select>
                 </div>
-                  <div>
+                  <div class="row">
                     <div class="col-sm-2">Soat: </div>
                     <input  placeholder="Soat" class="col-sm-4 form-control" type="text" ng-model="taxi_Editar.Soat"  name="">
                   </div>
-                  <div>
+                  <div  class="row">
                     <div class="col-sm-2">Seguro: </div>
                     <input  placeholder="Seguro" class="col-sm-4 form-control" type="text"  ng-model="taxi_Editar.Seguro" name="">
                   </div>
@@ -161,5 +168,7 @@
           </div>
         </div>
      </div>
+
+    </DIV>
     
 </div>
