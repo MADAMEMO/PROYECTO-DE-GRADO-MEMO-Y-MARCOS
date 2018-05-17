@@ -68,6 +68,15 @@ angular.module('TaxisFast', [
 			templateUrl: 'templates/carreras.html'
 
 		})
+
+		    .state('panel.informes',{
+			name: 'informes',
+			url: '/informes',
+			controller: 'InformesCtrl',
+			templateUrl: 'templates/informes.html'
+
+			})
+  
 	     .state('panel.perfil',{
 			name: 'perfil',
 			url: '/perfil',

@@ -1,0 +1,190 @@
+
+
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+                <div class="page-title">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li class="active">Bienvenido       {{USER.usuario}} </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button ng-click="mostrartabla()">Usuarios</button>
+
+    <button ng-click="mostrartabla2()">Taxistas</button>
+
+    <button ng-click="mostrartabla3()">Taxis</button>
+
+    <button ng-click="mostrartabla4()">Carreras</button>
+    <DIV class="card-body">
+                  <div ng-show="ver"  class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Tabla Usuario</strong>
+                        </div>
+                        <div class="card-body">
+                            <table class="table ">
+                              <thead >
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Nombres</th>
+                                  <th scope="col">Apellidos</th>
+                                  <th scope="col">Sexo</th>
+                                     <th scope="col">Tipo</th>
+                                  <th scope="col">Documento</th>
+                                  <th scope="col">Celular</th>
+                                  <th scope="col">Fecha De Nacimiento</th>
+                                  <th scope="col">Usuario</th>
+                               
+
+                                 
+                                </tr>
+                              </thead >
+                              <tbody>
+                                <tr ng-repeat="usuario in usuarios">
+                                  <th scope="row">{{usuario.rowid}}</th>
+                                  <td>{{usuario.nombres}}</td>
+                                  <td>{{usuario.apellidos}}</td>
+                                  <td>{{usuario.sexo}}</td>
+                                     <td>{{usuario.tipo}}</td>
+                                  <TD>{{usuario.documento}}</TD>
+                                   <TD>{{usuario.celular}}</TD>
+                                  <TD>{{usuario.fecha_nac | date:'dd/MM/yyyy'}}</TD>
+                                  <TD>{{usuario.usuario}}</TD>
+                       
+
+                                </tr>
+                               
+                              </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                <div ng-show="ver2"   class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Tabla Taxistas</strong>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Nombres</th>
+                                  <th scope="col">Apellidos</th>
+                                  <th scope="col">Sexo</th>
+                                  <th scope="col">Documento</th>
+                                  <th scope="col">Celular</th>
+                                  <th scope="col">Fecha De Nacimiento</th>
+                                  <th scope="col">Usuario</th>
+                                
+                           
+                                 
+                                </tr>
+                              </thead >
+                              <tbody>
+                                <tr ng-repeat="taxista in taxistas">
+                                  <th scope="row">{{taxista.rowid}}</th>
+                                  <td>{{taxista.nombres}}</td>
+                                  <td>{{taxista.apellidos}}</td>
+                                  <td>{{taxista.sexo}}</td>
+                                  <TD>{{taxista.documento}}</TD>
+                                   <TD>{{taxista.celular}}</TD>
+                                  <TD>{{taxista.fecha_nac | date:'dd/MM/yyyy'}}</TD>
+                                  <TD>{{taxista.usuario}}</TD>
+                             
+                              
+                                </tr>
+                               
+                              </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                   <div ng-show="ver3"  class="card">
+                        <div class="card-header">
+                            <strong class="card-title">TABLA TAXI</strong>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                              <thead></thead>>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Modelo</th>
+                                  <th scope="col">Placa</th>
+                                 <th scope="col">Propietario</th>
+                                  <th scope="col">Conductor</th>
+                                  <th scope="col">Soat</th>
+                                  <th scope="col">Seguro</th>
+                            
+                                 
+                                </tr>
+                              </thead >
+                              <tbody>
+                                <tr ng-repeat="taxi in taxis">
+                                  <th scope="row">{{taxi.rowid}}</th>
+                                   <td>{{taxi.modelo}}</td>
+                                  <td>{{taxi.placa}}</td>
+                                    <td>{{taxi.propietario}}</td>
+                                  <td>{{taxi.nombres}} {{taxi.apellidos}} </td>
+                                  <td>{{taxi.Soat}}</td>
+                                  <TD>{{taxi.Seguro}}</TD>
+                                  
+                                </tr>
+                               
+                              </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                
+                    <div ng-show="ver4"  class="card">
+                        <div class="card-header">
+                            <strong class="card-title">CARRERAS</strong>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Taxi</th>
+                                  <th scope="col">Taxista</th>
+                                  <th scope="col">Zona de parqueo</th>
+                                  <th scope="col">Fecha De Inicio</th>
+                                  <th scope="col">Lugar Inicio</th>
+                                  <th scope="col">Lugar Fin</th>
+                                  <th scope="col">Fecha Fin</th>
+                                  <th scope="col">Estado</th>
+                            
+                                 
+                                </tr>
+                              </thead >
+                              <tbody>
+                                <tr ng-repeat="carrera in carreras">
+                                  <th scope="row">{{carrera.rowid}}</th>
+                                  <td  >{{carrera.placa}}</td>
+                                  <td  >{{carrera.nombres}} {{carrera.apellidos}}</td>
+                                  <td  >{{carrera.zona}}</td>         
+                                  <td  >{{carrera.fecha_ini | date:'yyyy-MM-dd HH:mm' }}</td>
+                                  <TD > {{carrera.lugar_inicio}}</TD>
+                                   <TD >{{carrera.lugar_fin}}</TD>
+                                  <TD >{{carrera.fecha_fin | date:'yyyy-MM-dd HH:mm'}}</TD>
+                                  <TD >{{carrera.estado}}</TD>
+                             
+                           
+                                </tr>
+                               
+                              </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                </DIV>
