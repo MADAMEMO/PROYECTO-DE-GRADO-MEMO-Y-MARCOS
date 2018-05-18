@@ -30,8 +30,8 @@ $scope.ver2 = false;
 		}
 	
 
-		consulta = 'INSERT INTO taxis (modelo, placa, taxista_id, propietario, Soat, Seguro) VALUES(?, ?, ?, ?, ?, ?)'
-		ConexionServ.query(consulta, [taxi_nuevo.modelos, taxi_nuevo.placas, taxi_nuevo.taxista_id, taxi_nuevo.propietario	,  taxi_nuevo.Soat, taxi_nuevo.Seguro]).then(function(result){
+		consulta = 'INSERT INTO taxis (modelo, numero, placa, taxista_id, propietario, Soat, Seguro) VALUES(?, ?, ?, ?, ?, ?, ?)'
+		ConexionServ.query(consulta, [taxi_nuevo.modelos, taxi_nuevo.numero, taxi_nuevo.placas, taxi_nuevo.taxista_id, taxi_nuevo.propietario	,  taxi_nuevo.Soat, taxi_nuevo.Seguro]).then(function(result){
 			console.log('se cargo el taxi', result);
 			$scope.traer_datos()
 		}, function(tx){
@@ -112,8 +112,8 @@ $scope.ver2 = false;
 	$scope.guardartaxi = function(taxi_Editar){
 
 		
-		consulta = 'UPDATE taxis SET modelo=?, placa=?, taxista_id=?, propietario=?, Soat=?, Seguro=? where rowid=? '
-		ConexionServ.query(consulta, [taxi_Editar.modelos, taxi_Editar.placas,  taxi_Editar.taxista_id, taxi_Editar.propietario, taxi_Editar.Soat, taxi_Editar.Seguro, taxi_Editar.rowid]).then(function(result){
+		consulta = 'UPDATE taxis SET modelo=?, numero=?, placa=?, taxista_id=?, propietario=?, Soat=?, Seguro=? where rowid=? '
+		ConexionServ.query(consulta, [taxi_Editar.modelos, taxi_Editar.numero, taxi_Editar.placas,  taxi_Editar.taxista_id, taxi_Editar.propietario, taxi_Editar.Soat, taxi_Editar.Seguro, taxi_Editar.rowid]).then(function(result){
 			console.log('se cargo el taxi', result);
 
 		}, function(tx){

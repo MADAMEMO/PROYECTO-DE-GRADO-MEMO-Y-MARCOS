@@ -76,7 +76,7 @@ $scope.traer_datos = function(){
 
   $scope.traer_datos = function(){ 
 
-	consulta = 'SELECT c.*, c.rowid, t.nombres, t.apellidos, tx.placa from carreras c ' + 
+	consulta = 'SELECT c.*, c.rowid, t.nombres, t.apellidos, tx.numero from carreras c ' + 
 				'INNER JOIN taxistas t ON c.taxista_id = t.rowid ' + 
 				'INNER JOIN taxis tx ON c.taxi_id = tx.rowid ' +
 				'order by c.rowid desc';

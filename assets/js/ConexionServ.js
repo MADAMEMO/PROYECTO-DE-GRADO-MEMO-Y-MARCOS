@@ -32,6 +32,7 @@ angular.module('TaxisFast')
 
   sqltaxis = "CREATE TABLE IF NOT EXISTS taxis (id integer," +
                 "modelo varchar(100)  NOT NULL collate nocase," +
+                "numero varchar(100)  NOT NULL collate nocase," +
                 "placa varchar(100)  DEFAULT NULL collate nocase," +
                 "taxista_id varchar(100)  DEFAULT NULL collate nocase," +
                 "propietario varchar(100)  DEFAULT NULL collate nocase," +

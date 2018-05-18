@@ -41,7 +41,7 @@ angular.module('TaxisFast')
         loguear: function(datos){
             var defered = $q.defer();
             
-            consulta = 'SELECT u.rowid, u.id, u.nombres, u.apellidos, u.usuario, u.sexo, u.celular, u.tipo '+
+            consulta = 'SELECT u.rowid, u.id, u.nombres, u.apellidos, u.usuario, u.sexo, u.celular, u.documento, u.tipo '+
                         'FROM users u '+
                         'WHERE  u.usuario=? and u.password=? ' ;
             
@@ -84,8 +84,14 @@ angular.module('TaxisFast')
         
         update_user_storage: function(datos){
             var defered = $q.defer();
+
+
+            consulta = 'SELECT u.rowid, u.id, u.nombres, u.apellidos, u.usuario, u.sexo, u.celular, u.documento, u.tipo '+
+                        'FROM users u '+
+                        'WHERE  u.rowid=? ' ;
             
-            ConexionServ.query(consulta_user+' u.rowid=? ', [datos.rowid]).then(function(result){
+            
+            ConexionServ.query(consulta, [datos.rowid]).then(function(result){
 
                 if (result.length > 0) {
                     localStorage.logueado   = true

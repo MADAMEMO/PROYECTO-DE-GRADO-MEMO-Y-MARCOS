@@ -14,7 +14,8 @@ angular.module('TaxisFast', [
 	'ui.grid.autoResize',
 	'ui.grid.pinning',
 	'ui.grid.expandable',
-	'ui.grid.moveColumns'
+	'ui.grid.moveColumns',
+	'toastr'
 ])
 
 

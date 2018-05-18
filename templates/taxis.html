@@ -36,6 +36,11 @@
                           <input placeholder="Modelo" class="col-sm-4 form-control" type="text" ng-model="taxi_nuevo.modelos">
                         </div>
 
+                             <div class="row">
+                          <div class="col-sm-2">Numero: </div>
+                          <input placeholder="Numero" class="col-sm-4 form-control" type="text" ng-model="taxi_nuevo.numero">
+                        </div>
+
                         <div class="row">
                           <div class="col-sm-2">Placa: </div>
                           <input  placeholder="Placa" class="col-sm-4 form-control" type="text"  ng-model="taxi_nuevo.placas"  name="">
@@ -91,6 +96,7 @@
                                 <tr>
                                   <th scope="col">#</th>
                                   <th scope="col">Modelo</th>
+                                  <th scope="col">Numero</th>
                                   <th scope="col">Placa</th>
                                  <th scope="col">Propietario</th>
                                   <th scope="col">Conductor</th>
@@ -104,6 +110,8 @@
                                 <tr ng-repeat="taxi in taxis">
                                   <th scope="row">{{taxi.rowid}}</th>
                                    <td>{{taxi.modelo}}</td>
+                                     <td>{{taxi.numero}}</td>
+
                                   <td>{{taxi.placa}}</td>
                                     <td>{{taxi.propietario}}</td>
                                   <td>{{taxi.nombres}} {{taxi.apellidos}} </td>
@@ -136,6 +144,11 @@
                   <div class="row">
                     <div class="col-sm-2">Modelo: </div>
                     <input placeholder="Modelo" class="col-sm-4 form-control" type="text" ng-model="taxi_Editar.modelos">
+                  </div>
+
+                     <div class="row">
+                    <div class="col-sm-2">Numero: </div>
+                    <input placeholder="Numero" class="col-sm-4 form-control" type="text" ng-model="taxi_Editar.numero">
                   </div>
 
                   <div class="row">

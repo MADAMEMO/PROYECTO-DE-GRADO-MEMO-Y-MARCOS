@@ -2264,14 +2264,26 @@ header .form-inline {
     }
     .tb-informe td, .tb-informe th{
         border: 1px #000 solid !important;
+          text-align: center !important;
+    }
+    tb-informe td, .tb-informe div{
+        border: 1px #000 solid !important;
+        background-color: white;
+        padding: 0;
     }
 }
 .tb-informe td, .tb-informe th{
     padding: 0 !important;
+     border: 1px #000 solid !important;
+          text-align: center !important;
 }
 .tb-informe th{
   text-align: center;
 }
+.tb-informe tr{
+  text-align: center;
+}
+
 
 
 

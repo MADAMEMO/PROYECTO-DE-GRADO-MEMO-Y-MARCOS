@@ -1,6 +1,6 @@
 var app = angular.module('TaxisFast');
 
-app.controller('LoginCtrl', function($scope, $http, $filter, ConexionServ, AuthServ, $state){
+app.controller('LoginCtrl', function($scope, $http, $filter, ConexionServ, AuthServ, $state, toastr){
 
 ConexionServ.createTables();
 
@@ -11,7 +11,7 @@ ConexionServ.createTables();
 		AuthServ.loguear(usu).then(function(){
 			$state.go('panel');
 		}, function(err){
-			alert('Datos inválidados');
+			toastr.error('Datos inválidados');
 		});
 	}
 
@@ -60,14 +60,14 @@ ConexionServ.createTables();
 				
 				// Taxis
 				
-				consulta = "INSERT INTO taxis(modelo, placa, taxista_id) VALUES(?,?,?) ";
-				ConexionServ.query(consulta, ['MAZDA 2016', 'YAU-322', 1]).then(function(result) {
+				consulta = "INSERT INTO taxis(modelo, numero, placa, taxista_id) VALUES(?, ?,?,?) ";
+				ConexionServ.query(consulta, ['MAZDA 2016', '036', 'YAU-322', 1]).then(function(result) {
 				
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				
-				ConexionServ.query(consulta, ['Yamazuki', 'piolin', 2]).then(function(result) {
+				 
+				ConexionServ.query(consulta, ['Yamazuki',  '031', 'piolin', 2]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);

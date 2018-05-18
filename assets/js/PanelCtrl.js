@@ -6,6 +6,7 @@ app.controller('PanelCtrl', function($scope, AuthServ, $state, USER){
 
 	console.log(USER)
 
+
 	$scope.cerrar_sesion = function(){
 		AuthServ.cerrar_sesion();
 	}

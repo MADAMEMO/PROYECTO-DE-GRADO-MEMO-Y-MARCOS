@@ -1,7 +1,55 @@
 var app = angular.module('TaxisFast');
 
-app.controller('perfilCtrl', function($scope, $http, $filter, ConexionServ, AuthServ, $state){
+app.controller('perfilCtrl', function($scope, $http, $filter, ConexionServ, AuthServ,  $state, USER, toastr){
+
+$scope.USER = USER;
+
+ 
+   $scope.usu = USER;
+
+   $scope.passwords = {
+   		antiguo: '',
+   		nuevo: '',
+   		nuevo2: ''
+   };
 
 
+	$scope.GUARDARUSUARIO = function(usu){
+			
+		consulta = 'UPDATE users SET  nombres=?, apellidos=?, sexo=?, documento=?, celular=?, fecha_nac=? where rowid=?'
+		ConexionServ.query(consulta, [usu.nombres,usu.apellidos, usu.sexo, usu.documento, usu.celular, usu.fecha_nac,  usu.rowid]).then(function(result){
+			console.log('se cargo el usuario', result);
+			AuthServ.update_user_storage(usu);
+			toastr.success('Guardado con éxito', 'Guardado');
+		}, function(tx){
+			console.log('error', tx);
+			toastr.error('No se pudo guardar');
+		});
+		$scope.ver = false;
+	}	
+
+	$scope.cambiar_pass = function(passwords){
+
+
+		if (passwords.nuevo != passwords.nuevo2) {
+			toastr.warning('No coincide la contraseña nueva');
+			return;
+		}
+		
+		datos = { username: $scope.USER.usuario, password: passwords.antiguo}
+		
+		AuthServ.loguear(datos).then(function(){
+			
+			consulta = 'UPDATE users SET password=? WHERE rowid=?';
+			ConexionServ.query(consulta, [passwords.nuevo, $scope.USER.rowid]).then(function(){
+				toastr.success('Contraseña cambiada');
+			}, function(){
+				toastr.error('Contraseña NO cambiada');
+			})
+
+		}, function(err){
+			toastr.error('Contraseña antigua inválida');
+		});
+	}	
 
 });

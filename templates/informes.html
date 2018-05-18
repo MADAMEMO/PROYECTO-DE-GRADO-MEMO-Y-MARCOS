@@ -1,22 +1,23 @@
 
-
-    <div class="breadcrumbs">
-        <div class="col-sm-4">
-            <div class="page-header float-left">
-                <div class="page-title">
+<div class="no-print"> 
+    <div class= "breadcrumbs ">
+        <div class="col-sm-4 no-print">
+            <div class=" no-print page-float-left ">
+                <div class="page-title ">
                 </div>
             </div>
         </div>
-        <div class="col-sm-8">
-            <div class="page-header float-right">
-                <div class="page-title">
-                    <ol class="breadcrumb text-right">
+        <div class="col-sm-8 no-print">
+            <div class="page-header float-right no-print">
+                <div class="page-title no-print">
+                    <ol class="breadcrumb text-right no-print" >
                         <li class="active">Bienvenido       {{USER.usuario}} </li>
                     </ol>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <div class="card-body no-print">
         <div class="card">
@@ -84,7 +85,7 @@
                             <strong class="card-title">Tabla Taxistas</strong>
                         </div>
                         <div class="card-body">
-                            <table class="table">
+                            <table class="table tb-informe ">
                               <thead>
                                 <tr>
                                   <th scope="col">#</th>
@@ -124,11 +125,12 @@
                             <strong class="card-title">TABLA TAXI</strong>
                         </div>
                         <div class="card-body">
-                            <table class="table">
-                              <thead></thead>>
+                            <table class="table tb-informe">
+                              <thead></thead>
                                 <tr>
                                   <th scope="col">#</th>
                                   <th scope="col">Modelo</th>
+                                   <th scope="col">Numero</th>
                                   <th scope="col">Placa</th>
                                  <th scope="col">Propietario</th>
                                   <th scope="col">Conductor</th>
@@ -140,8 +142,9 @@
                               </thead >
                               <tbody>
                                 <tr ng-repeat="taxi in taxis">
-                                  <th scope="row">{{taxi.rowid}}</th>
+                                  <td scope="row">{{taxi.rowid}}</td>
                                    <td>{{taxi.modelo}}</td>
+                                  <td>{{taxi.numero}}</td>
                                   <td>{{taxi.placa}}</td>
                                     <td>{{taxi.propietario}}</td>
                                   <td>{{taxi.nombres}} {{taxi.apellidos}} </td>
@@ -162,7 +165,7 @@
                             <strong class="card-title">CARRERAS</strong>
                         </div>
                         <div class="card-body">
-                            <table class="table">
+                            <table class="table tb-informe">
                               <thead>
                                 <tr>
                                   <th scope="col">#</th>
