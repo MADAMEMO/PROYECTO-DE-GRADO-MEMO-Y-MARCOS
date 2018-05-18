@@ -14,7 +14,9 @@ $scope.ver3 = false;
  
 
 $scope.ver4 = false;
- 
+
+
+
  
 
 	consulta = 'SELECT *, rowid from users'
@@ -61,7 +63,34 @@ $scope.ver4 = false;
 	})
 
 
+	$scope.mostrartabla = function(){
+	$scope.ver = !$scope.ver;
+	$scope.ver2 = false;
+	$scope.ver4 = false;
+	$scope.ver3 = false;
 
+	}
+		$scope.mostrartabla2 = function(){
+	$scope.ver2= !$scope.ver2;
+		$scope.ver = false;
+	$scope.ver4 = false;
+	$scope.ver3 = false;	
+
+	}
+		$scope.mostrartabla3 = function(){
+	$scope.ver3= !$scope.ver3;
+	$scope.ver2 = false;
+	$scope.ver4 = false;
+	$scope.ver = false;
+
+
+	}
+		$scope.mostrartabla4 = function(){
+		$scope.ver4= !$scope.ver4;
+	$scope.ver2 = false;
+	$scope.ver = false;
+	$scope.ver3 = false;
+	}
 
  
 

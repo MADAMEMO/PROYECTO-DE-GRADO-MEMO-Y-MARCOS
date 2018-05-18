@@ -2262,4 +2262,16 @@ header .form-inline {
     {
         display: none !important;
     }
+    .tb-informe td, .tb-informe th{
+        border: 1px #000 solid !important;
+    }
 }
+.tb-informe td, .tb-informe th{
+    padding: 0 !important;
+}
+.tb-informe th{
+  text-align: center;
+}
+
+
+
