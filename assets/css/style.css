@@ -2283,7 +2283,12 @@ header .form-inline {
 .tb-informe tr{
   text-align: center;
 }
-
+.main-menu{
+  padding: 0;
+}
+.for-notification.show{
+  display: inline-block !important;
+}
 
 
 

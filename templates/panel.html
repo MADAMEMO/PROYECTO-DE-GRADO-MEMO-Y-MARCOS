@@ -11,7 +11,7 @@
               
                 </a>
 
-                <a class="navbar-brand hidden" href="./"></a>
+                <a class="navbar-brand hidden" href=""></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -19,60 +19,60 @@
                     <li class="active">
                         <a ui-sref="panel"> <i class="menu-icon fa fa-dashboard"></i>INICIO </a>
                     </li>
-                        <li>
-                                <a ui-sref="panel.carreras">
-                                    
-                                 <i class=" fa fa-flag-checkered">    CARRERAS</i>
+                    <li>
+                        <a ui-sref="panel.carreras">
+                            
+                            <i class="menu-icon fa fa-flag-checkered"></i>
+                            CARRERAS
 
-                                </a>
-                           </li>
+                        </a>
+                    </li>
 
-                        <li>
-                                <a ui-sref="panel.informes">
-                                    
-                                 <i class="glyphicon glyphicon-file"> INFORMES</i>
+                    <li>
+                        <a ui-sref="panel.informes">
+                            
+                            <i class="menu-icon glyphicon glyphicon-file"></i>
+                            INFORMES
 
-                                </a>
-                        </li>
+                        </a>
+                    </li>
                          
                     <h3 class="menu-title">GEOLOCALIZACION</h3><!-- /.menu-title -->
                            
 
-                       
+                    <li ng-show="USER.tipo == 'Admin'">
+                        <a ui-sref="panel.usuarios"> 
+                            <i class="menu-icon fa fa-user "></i>
+                            USUARIOS
+                        </a>
+                    </li>
 
-
-                         <li ng-show="USER.tipo == 'Admin'">
-                            <a ui-sref="panel.usuarios"> 
-                                <i class="fa fa-user "></i>
-                                USUARIOS
-                            </a>
-                        </li>
-
-                        <li ng-show="USER.tipo == 'Admin'">
-                            
-                            <a ui-sref="panel.taxistas">
-                                <i class="  fa fa-address-card-o"></i>
-                                  TAXISTAS
-                            </a>
-                        </li>
+                    <li ng-show="USER.tipo == 'Admin'">
+                        
+                        <a ui-sref="panel.taxistas">
+                            <i class="menu-icon fa fa-address-card-o"></i>
+                            TAXISTAS
+                        </a>
+                    </li>
 
 
 
-                         <li ng-show="USER.tipo == 'Admin'">
-                            <a ui-sref="panel.taxis">
-                                <i class="fa fa-cab"> TAXIS</i>
+                    <li ng-show="USER.tipo == 'Admin'">
+                        <a ui-sref="panel.taxis">
+                            <i class="menu-icon fa fa-cab"> </i>
+                            TAXIS
+                        </a>
 
-                            </a>
-
-                         </li>
-                       
-                    
+                    </li>
+                
+            
 
                     <h3 ng-show="USER.tipo == 'Admin'" class="menu-title">GEOLOCALIZACION</h3><!-- /.menu-title -->
 
                     
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>GPS</a>
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                            <i class="menu-icon fa fa-area-chart"></i>GPS</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
                          
@@ -80,7 +80,7 @@
                     </li >
                     <h3 ng-show="USER.tipo == 'Admin'" class="menu-title">Extras</h3><!-- /.menu-title -->
                     <li ng-show="USER.tipo == 'Admin'" class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Login</a></li>
                             <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
@@ -103,8 +103,11 @@
         <div class="header-menu">
 
             <div class="col-sm-7">
-                <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                <a id="menuToggle" ng-click="calapsar_menu()" class="menutoggle pull-left">
+                    <i class="fa fa fa-tasks"></i>
+                </a>
                 <div class="header-left">
+                    <!--
                     <button class="search-trigger"><i class="fa fa-search"></i></button>
                     <div class="form-inline">
                         <form class="search-form">
@@ -112,25 +115,22 @@
                             <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                         </form>
                     </div>
+                    -->
 
-                    <div class="dropdown for-notification">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div uib-dropdown class="dropdown for-notification">
+                      <button uib-dropdown-toggle class="btn btn-secondary dropdown-toggle" type="button" id="notification">
                         <i class="fa fa-bell"></i>
-                        <span class="count bg-danger">5</span>
+                        <!--<span class="count bg-danger">5</span>-->
                       </button>
-                      <div class="dropdown-menu" aria-labelledby="notification">
-                        <p class="red">You have 3 Notification</p>
-                        <a class="dropdown-item media bg-flat-color-1" href="#">
+                      <div uib-dropdown-menu class="dropdown-menu" aria-labelledby="notification">
+                        <p class="red">Notificaciones</p>
+                        <a class="dropdown-item media bg-flat-color-1" href="">
                             <i class="fa fa-check"></i>
-                            <p>Server #1 overloaded.</p>
+                            <p>Una.</p>
                         </a>
-                        <a class="dropdown-item media bg-flat-color-4" href="#">
-                            <i class="fa fa-info"></i>
-                            <p>Server #2 overloaded.</p>
-                        </a>
-                        <a class="dropdown-item media bg-flat-color-5" href="#">
+                        <a class="dropdown-item media bg-flat-color-5" href="">
                             <i class="fa fa-warning"></i>
-                            <p>Server #3 overloaded.</p>
+                            <p>Dos.</p>
                         </a>
                       </div>
                     </div>
@@ -139,8 +139,8 @@
             </div>
 
             <div class="col-sm-5">
-                <div class="user-area dropdown float-right" uib-dropdown>
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div uib-dropdown class="user-area dropdown float-right">
+                    <a uib-dropdown-toggle href="" class="dropdown-toggle">
                         <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
                     </a>
 
