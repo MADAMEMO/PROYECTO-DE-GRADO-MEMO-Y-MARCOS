@@ -55,3 +55,28 @@ app.controller('PanelCtrl', function($scope, AuthServ, $state, USER, $firebaseAr
 	}
 
 });
+
+
+
+
+
+
+
+
+window.fixDate = function(fec){
+	dia 	= fec.getDate();
+	mes 	= (fec.getMonth() + 1 );
+	year 	= fec.getFullYear();
+
+	if (dia < 10) {
+		dia = '0' + dia;
+	}
+
+	if (mes < 10) {
+		mes = '0' + mes;
+	}
+
+	fecha 	= '' + year + '-' + mes  + '-' + dia;
+
+	return fecha;
+}

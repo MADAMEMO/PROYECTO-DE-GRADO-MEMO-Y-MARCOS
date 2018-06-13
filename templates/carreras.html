@@ -226,47 +226,87 @@
                 <form>
                   <H1>MODIFICAR</H1>
                 <div>
-                <div class="row">
-                  <div class="col-sm-2">Taxi: </div>
-                  <select placeholder="Taxi" class="col-sm-4 form-control" type="text" ng-model="carrera_Editar.taxi_id "  name="">
-                    <option value="{{taxi.rowid}}" ng-repeat="taxi in taxis">{{taxi.placas}}</option>
-                  </select>
-                </div>
 
-              <div class="row">
-                  <div class="col-sm-2">Taxista: </div>
-                  <select placeholder="Taxista" class="col-sm-4 form-control" type="text" ng-model="carrera_Editar.taxista_id  "  name="">
-                    <option value="{{taxista.rowid}}" ng-repeat="taxista in taxistas">{{taxista.nombres}}   {{taxista.apellidos}}</option>
-                  </select>
-                </div>
-                     <div class="row">
-                          <div class="col-sm-2">Zona de parqueo: </div>
-                          <div class="btn-group">
-                              <label class="btn btn-primary" ng-model="carrera_Editar.zona" uib-btn-radio="'Z1'">Z1</label>
-                              <label class="btn btn-primary" ng-model="carrera_Editar.zona" uib-btn-radio="'Z2'">Z2</label>
-                              <label class="btn btn-primary" ng-model="carrera_Editar.zona" uib-btn-radio="'Z3'">Z3</label>
+                    <div class="row">
+                          <div class="col-sm-3">Taxi: </div>
+
+                          <div class="col-sm-4">
+
+                            <ui-select ng-model="carrera_Editar.taxi" style="width: 100%;" theme="bootstrap">
+                              <ui-select-match placeholder="Taxi">
+                                <span ng-bind="$select.selected.rowid + ' (' + $select.selected.numero + ')'"></span>
+                              </ui-select-match>
+                              <ui-select-choices repeat="item in  taxis |  filter: $select.search track by $index">
+                                <span ng-bind-html="item.rowid + ' (' + item.numero + ')' | highlight: $select.search"></span>
+                              </ui-select-choices>
+                            </ui-select>
+                            
                           </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-3">Taxista:</div>
+
+
+                          <div class="col-sm-4">
+
+                            <ui-select ng-model="carrera_Editar.taxista" style="width: 100%;" theme="bootstrap">
+                              <ui-select-match placeholder="Taxista">
+                                <span ng-bind="$select.selected.nombres + ' ' + $select.selected.apellidos "></span>
+                              </ui-select-match>
+                              <ui-select-choices repeat="item in  taxistas |  filter: $select.search track by $index">
+                                <span ng-bind-html="item.nombres + ' ' + item.apellidos  | highlight: $select.search"></span>
+                              </ui-select-choices>
+                            </ui-select>
+                            
+                          </div>
+
+
+                        
+                      </div>
+                        <div class="row" style="padding-top: 10px;  padding-bottom: 10px">
+                      <div class="col-sm-3">Zona de parqueo: </div>
+                        <div class="col-sm-4">
+                          <div class="btn-group">
+                              <label class="btn btn-primary btn-lg" ng-model="carrera_Editar.zona" uib-btn-radio="'Z1'">Z1</label>
+                              <label class="btn btn-primary btn-lg" ng-model="carrera_Editar.zona" uib-btn-radio="'Z2'">Z2</label>
+                              <label class="btn btn-primary btn-lg" ng-model="carrera_Editar.zona" uib-btn-radio="'Z3'">Z3</label>
+                          
+                        </div>
                     </div>
+                  </div>
 
 
                 <div class="row">
-                  <div class="col-sm-2">Fecha Inicio: </div>
+                  <div class="col-sm-3">Fecha Inicio: </div>
                   <input  placeholder="Fecha Inicio" class="col-sm-4 form-control" type="date" ng-model="carrera_Editar.fecha_ini"  name="">
                 </div>
+                    <div class="row">
+                  <div class="col-sm-3" style="padding-top: 30px;">Hora Inicio: </div>
+                  <div uib-timepicker ng-model="carrera_Editar.hora_ini"" ng-change="1" hour-step="1" minute-step="1" show-meridian="true"></div>
+
+                 
+                </div>
 
                 <div class="row">
-                  <div class="col-sm-2">Lugar Inicio: </div>
+                  <div class="col-sm-3">Lugar Inicio: </div>
                   <input  placeholder="Lugar Inicio" class="col-sm-4 form-control" type="text" ng-model="carrera_Editar.lugar_inicio"  name="">
                 </div>
 
                 <div class="row">
-                  <div class="col-sm-2">Lugar Fin: </div>
+                  <div class="col-sm-3">Lugar Fin: </div>
                   <input  placeholder="Lugar Fin" class="col-sm-4 form-control" type="text"  ng-model="carrera_Editar.lugar_fin" name="">
                 </div>
 
                 <div class="row">
-                  <div class="col-sm-2">Fecha Fin: </div>
+                  <div class="col-sm-3">Fecha Fin: </div>
                   <input  placeholder="Fecha Fin" class="col-sm-4 form-control" type="date"  ng-model="carrera_Editar.fecha_fin" name="">
+                </div>
+
+
+             <div class="row">
+                  <div class="col-sm-3" style="padding-top: 30px;">Hora Fin: </div>
+                   <div uib-timepicker ng-model="carrera_Editar.hora_fin"" ng-change="1" hour-step="1" minute-step="1" show-meridian="true"></div>
                 </div>
 
                  <div class="row">

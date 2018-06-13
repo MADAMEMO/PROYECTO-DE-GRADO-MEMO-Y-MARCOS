@@ -14,10 +14,11 @@ $scope.USER = USER;
    };
 
 
+
 	$scope.GUARDARUSUARIO = function(usu){
-			
+			fecha_nac = '' + usu.fecha_nac.getFullYear() + '-' + (usu.fecha_nac.getMonth() + 1) + '-' + usu.fecha_nac.getDate();
 		consulta = 'UPDATE users SET  nombres=?, apellidos=?, sexo=?, documento=?, celular=?, fecha_nac=? where rowid=?'
-		ConexionServ.query(consulta, [usu.nombres,usu.apellidos, usu.sexo, usu.documento, usu.celular, usu.fecha_nac,  usu.rowid]).then(function(result){
+		ConexionServ.query(consulta, [usu.nombres,usu.apellidos, usu.sexo, usu.documento, usu.celular,fecha_nac,  usu.rowid]).then(function(result){
 			console.log('se cargo el usuario', result);
 			AuthServ.update_user_storage(usu);
 			toastr.success('Guardado con éxito', 'Guardado');

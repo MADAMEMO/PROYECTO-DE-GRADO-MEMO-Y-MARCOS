@@ -31,11 +31,14 @@
               <button ng-click="mostrartabla2()">Taxistas</button>
 
               <button ng-click="mostrartabla3()">Taxis</button>
+                 <button ng-click="mostrartabla4()">Carreras</button>
 
-              <button ng-click="mostrartabla4()">Carreras</button>
             </div>
           </div>
         </div>
+
+     
+
 
       <DIV class="card-body">
                   <div ng-show="ver"  class="card">
@@ -120,6 +123,132 @@
 
                         </div>
                     </div>
+
+                    <div class="card" ng-show="ver4">
+                      
+                       <div class="card-header">
+                            <strong class="card-title">Carreras</strong>
+                        </div>
+                      <div class="card-body">
+                          <div class="row">
+                              <div class="col-sm-3">Filtro:</div>                           
+                                <div ng-click="fechaclick()" class="col-sm-3">
+                                  Filtrar por Fecha
+                                </div>   
+                                <div ng-click="taxiclick()" class="col-sm-3">
+                                  Filtar por Taxi
+                                </div>   
+                                <div ng-click="taxistaclick()" class="col-sm-3">
+                                  Filtar por Taxista
+                                </div>   
+                          </div>
+
+                       <div ng-show="fechamostrar">
+                        <div class="row">
+                          <div class="col-sm-3">Fecha Inicio: </div>
+                            <input  placeholder="Fecha Inicio" class="col-sm-4 form-control" type="date" ng-model="informe.fecha_ini"  name="">
+                          <button ng-click="traer_datos(informe)">Traer Carreras</button>
+                          </div>
+                       </div> 
+
+                  <div ng-show="taximostrar"> 
+                    <div class="row">
+                          <div class="col-sm-3">Taxi: </div>
+
+                          <div class="col-sm-4">
+
+                            <ui-select ng-model="informe.taxi" style="width: 100%;" theme="bootstrap">
+                              <ui-select-match placeholder="Taxi">
+                                <span ng-bind="$select.selected.rowid + ' (' + $select.selected.numero + ')'"></span>
+                              </ui-select-match>
+                              <ui-select-choices repeat="item in  taxis |  filter: $select.search track by $index">
+                                <span ng-bind-html="item.rowid + ' (' + item.numero + ')' | highlight: $select.search"></span>
+                              </ui-select-choices>
+                            </ui-select>
+                            
+                          </div>
+                          <button ng-click="traer_datos3(informe)">Traer Carreras</button>
+                        </div>
+                  </div>
+                <div ng-show="taxistamostrar">
+                  <div class="row">
+                          <div class="col-sm-3">Taxista:</div>
+
+
+                          <div class="col-sm-4">
+
+                            <ui-select ng-model="informe.taxista" style="width: 100%;" theme="bootstrap">
+                              <ui-select-match placeholder="Taxista">
+                                <span ng-bind="$select.selected.nombres + ' ' + $select.selected.apellidos "></span>
+                              </ui-select-match>
+                              <ui-select-choices repeat="item in  taxistas |  filter: $select.search track by $index">
+                                <span ng-bind-html="item.nombres + ' ' + item.apellidos  | highlight: $select.search"></span>
+                              </ui-select-choices>
+                            </ui-select>
+                            
+                          </div>
+
+                          <button ng-click="traer_datos2(informe)">Traer Carreras</button>
+                        
+                      </div>
+                </div>
+                          
+                      </div>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                       <div ng-show="vertablacarreras"   class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Tabla Taxistas</strong>
+                        </div>
+                       
+                     
+                        <div class="card-body">
+                            <table class="table tb-informe">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Taxi</th>
+                                  <th scope="col">Taxista</th>
+                                  <th scope="col">Zona </th>
+                                  <th scope="col">Fecha Ini</th>
+                                  <th scope="col">Lugar Ini</th>
+                                  <th scope="col">Lugar Fin</th>
+                                  <th scope="col">Fecha Fin</th>
+                                  <th scope="col">Estado</th>
+                            
+                                 
+                                </tr>
+                              </thead >
+                              <tbody>
+                                <tr ng-repeat="carrera in carreras">
+                                  <th scope="row">{{carrera.rowid}}</th>
+                                  <td  >{{carrera.numero}}</td>
+                                  <td  >{{carrera.nombres}} {{carrera.apellidos}}</td>
+                                  <td  >{{carrera.zona}}</td>         
+                                  <td  >{{carrera.fecha_ini | date:'yyyy-MM-dd HH:mm' }}</td>
+                                  <TD > {{carrera.lugar_inicio}}</TD>
+                                   <TD >{{carrera.lugar_fin}}</TD>
+                                  <TD >{{carrera.fecha_fin | date:'yyyy-MM-dd HH:mm'}}</TD>
+                                  <TD >{{carrera.estado}}</TD>
+                             
+                           
+                                </tr>
+                               
+                              </tbody>
+                            </table>
+
+                        </div>
+                    </div>
                    <div ng-show="ver3"  class="card">
                         <div class="card-header">
                             <strong class="card-title">TABLA TAXI</strong>
@@ -158,48 +287,13 @@
 
                         </div>
                     </div>
+                    <div class="card-body no-print">
+
+            </div>
+          </div>
+        </div>
 
                 
-                    <div ng-show="ver4"  class="card">
-                        <div class="card-header">
-                            <strong class="card-title">CARRERAS</strong>
-                        </div>
-                        <div class="card-body">
-                            <table class="table tb-informe">
-                              <thead>
-                                <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Taxi</th>
-                                  <th scope="col">Taxista</th>
-                                  <th scope="col">Zona de parqueo</th>
-                                  <th scope="col">Fecha De Inicio</th>
-                                  <th scope="col">Lugar Inicio</th>
-                                  <th scope="col">Lugar Fin</th>
-                                  <th scope="col">Fecha Fin</th>
-                                  <th scope="col">Estado</th>
-                            
-                                 
-                                </tr>
-                              </thead >
-                              <tbody>
-                                <tr ng-repeat="carrera in carreras">
-                                  <th scope="row">{{carrera.rowid}}</th>
-                                  <td  >{{carrera.numero}}</td>
-                                  <td  >{{carrera.nombres}} {{carrera.apellidos}}</td>
-                                  <td  >{{carrera.zona}}</td>         
-                                  <td  >{{carrera.fecha_ini | date:'yyyy-MM-dd HH:mm' }}</td>
-                                  <TD > {{carrera.lugar_inicio}}</TD>
-                                   <TD >{{carrera.lugar_fin}}</TD>
-                                  <TD >{{carrera.fecha_fin | date:'yyyy-MM-dd HH:mm'}}</TD>
-                                  <TD >{{carrera.estado}}</TD>
-                             
-                           
-                                </tr>
-                               
-                              </tbody>
-                            </table>
-
-                        </div>
-                    </div>
+             
                 </div>
                 </DIV>

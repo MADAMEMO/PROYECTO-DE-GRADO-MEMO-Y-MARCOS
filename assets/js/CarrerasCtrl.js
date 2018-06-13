@@ -4,9 +4,15 @@ app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ){
 
 	ConexionServ.createTables();
 
+	fecha = new Date();
 
 	$scope.carrera_nuevo = {
-		zona: 'Z1'
+		zona: 'Z1',
+		fecha_ini: fecha,
+		fecha_fin: fecha,
+		hora_ini: fecha,
+		hora_fin: fecha,
+		estado: 'En curso'
 	};
 	
 
@@ -35,11 +41,11 @@ app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ){
 
 
 		 
-		fecha_inicio = '' + carrera_nuevo.fecha_ini.getFullYear() + '-' + (carrera_nuevo.fecha_ini.getMonth() + 1 )    + '-' + carrera_nuevo.fecha_ini.getDate();
-		fecha_fin = '' + carrera_nuevo.fecha_fin.getFullYear() + '-' +  (  carrera_nuevo.fecha_ini.getMonth()  +1 ) + '-' + carrera_nuevo.fecha_ini.getDate();
+		fecha_inicio 	= window.fixDate(carrera_nuevo.fecha_ini);
+		fecha_fin 		= window.fixDate(carrera_nuevo.fecha_fin);
 	
-		hora_inicio = '' + carrera_nuevo.hora_ini.getHours() + ':' +    carrera_nuevo.hora_ini.getMinutes();   //+ (carrera_nuevo.hora_ini.getHours() >= 12 ? "PM" : "AM");
-		hora_final = '' + carrera_nuevo.hora_fin.getHours() + ':' +    carrera_nuevo.hora_fin.getMinutes();   //+ (carrera_nuevo.hora_fin.getHours() >= 12 ? "PM" : "AM");
+		hora_inicio 	= '' + carrera_nuevo.hora_ini.getHours() + ':' +    carrera_nuevo.hora_ini.getMinutes();   //+ (carrera_nuevo.hora_ini.getHours() >= 12 ? "PM" : "AM");
+		hora_final 		= '' + carrera_nuevo.hora_fin.getHours() + ':' +    carrera_nuevo.hora_fin.getMinutes();   //+ (carrera_nuevo.hora_fin.getHours() >= 12 ? "PM" : "AM");
 	
 		fechayhora_inicio 	= fecha_inicio  + ' ' + hora_inicio;
 		fechayhora_fin 		= fecha_fin 	+ ' ' + hora_final;
@@ -59,6 +65,8 @@ app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ){
   $scope.mostrartabla = function(carrera){
 
   }
+
+
 /*
 $scope.traer_datos = function(){
 	consulta = 'SELECT taxi_id, taxista_id, fecha_ini, lugar_inicio, lugar_fin, fecha_fin, estado, rowid from carreras'
@@ -136,9 +144,19 @@ $scope.traer_datos = function(){
     
 
 	$scope.guardarcarrera = function(carrera_Editar){
-		
+	
+
+		fecha_inicio = '' + carrera_Editar.fecha_ini.getFullYear() + '-' + (carrera_Editar.fecha_ini.getMonth() + 1 )    + '-' + carrera_Editar.fecha_ini.getDate();
+		fecha_fin = '' + carrera_Editar.fecha_fin.getFullYear() + '-' +  (  carrera_Editar.fecha_ini.getMonth()  +1 ) + '-' + carrera_Editar.fecha_ini.getDate();
+	
+		hora_inicio = '' + carrera_Editar.hora_ini.getHours() + ':' +    carrera_Editar.hora_ini.getMinutes();   //+ (carrera_nuevo.hora_ini.getHours() >= 12 ? "PM" : "AM");
+		hora_final = '' + carrera_Editar.hora_fin.getHours() + ':' +    carrera_Editar.hora_fin.getMinutes();   //+ (carrera_nuevo.hora_fin.getHours() >= 12 ? "PM" : "AM");
+	
+		fechayhora_inicio 	= fecha_inicio  + ' ' + hora_inicio;
+		fechayhora_fin 		= fecha_fin 	+ ' ' + hora_final;
+
 		consulta = 'UPDATE carreras SET  taxi_id=?, taxista_id=?, zona=?, fecha_ini=?, lugar_inicio=?, lugar_fin=?, fecha_fin=?, estado=? where rowid=? '
-		ConexionServ.query(consulta, [carrera_Editar.taxi, carrera_Editar.taxista, carrera_Editar.zona, carrera_Editar.fecha_ini, carrera_Editar.lugar_inicio, carrera_Editar.lugar_fin, carrera_Editar.fecha_fin, carrera_Editar.estado, carrera_Editar.rowid]).then(function(result){
+		ConexionServ.query(consulta, [carrera_Editar.taxi.rowid, carrera_Editar.taxista.rowid, carrera_Editar.zona, fechayhora_inicio, carrera_Editar.lugar_inicio, carrera_Editar.lugar_fin, fechayhora_fin, carrera_Editar.estado, carrera_Editar.rowid]).then(function(result){
 			console.log('se cargo la carrera', result);
 
 $scope.traer_datos()
