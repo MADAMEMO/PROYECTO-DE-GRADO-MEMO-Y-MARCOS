@@ -78,7 +78,17 @@ angular.module('TaxisFast', [
 			templateUrl: 'templates/informes.html'
 
 			})
-  
+  	
+
+		    .state('panel.GPS',{
+			name: 'GPS',
+			url: '/GPS',
+			controller: 'GPSCtrl',
+			templateUrl: 'templates/GPS.html'
+
+			})
+
+
 	     .state('panel.perfil',{
 			name: 'perfil',
 			url: '/perfil',

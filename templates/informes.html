@@ -131,16 +131,18 @@
                         </div>
                       <div class="card-body">
                           <div class="row">
-                              <div class="col-sm-3">Filtro:</div>                           
-                                <div ng-click="fechaclick()" class="col-sm-3">
-                                  Filtrar por Fecha
-                                </div>   
-                                <div ng-click="taxiclick()" class="col-sm-3">
-                                  Filtar por Taxi
-                                </div>   
-                                <div ng-click="taxistaclick()" class="col-sm-3">
-                                  Filtar por Taxista
-                                </div>   
+                              <div class="col-sm-3">Filtrar por:</div>  
+                              <div class="btn-group">                        
+                                <label ng-click="fechaclick()" class="btn btn-primary col-sm">
+                                  Fecha
+                                </label>   
+                                <label ng-click="taxiclick()" class="btn btn-primary col-sm">
+                                  Taxi
+                                </label>   
+                                <label ng-click="taxistaclick()" class="btn btn-primary col-sm">
+                                  Taxista
+                                </label>
+                                </div>    
                           </div>
 
                        <div ng-show="fechamostrar">
@@ -195,13 +197,10 @@
                           
                       </div>
 
+
+                
+
                     </div>
-
-
-
-
-
-
 
 
 
@@ -249,19 +248,20 @@
 
                         </div>
                     </div>
+
                    <div ng-show="ver3"  class="card">
                         <div class="card-header">
                             <strong class="card-title">TABLA TAXI</strong>
                         </div>
-                        <div class="card-body">
-                            <table class="table tb-informe">
-                              <thead></thead>
-                                <tr>
+                            <div class="card-body">
+                              <table class="table tb-informe">
+                               <thead></thead>
+                                 <tr>
                                   <th scope="col">#</th>
                                   <th scope="col">Modelo</th>
-                                   <th scope="col">Numero</th>
+                                  <th scope="col">Numero</th>
                                   <th scope="col">Placa</th>
-                                 <th scope="col">Propietario</th>
+                                  <th scope="col">Propietario</th>
                                   <th scope="col">Conductor</th>
                                   <th scope="col">Soat</th>
                                   <th scope="col">Seguro</th>
@@ -272,10 +272,10 @@
                               <tbody>
                                 <tr ng-repeat="taxi in taxis">
                                   <td scope="row">{{taxi.rowid}}</td>
-                                   <td>{{taxi.modelo}}</td>
+                                  <td>{{taxi.modelo}}</td>
                                   <td>{{taxi.numero}}</td>
                                   <td>{{taxi.placa}}</td>
-                                    <td>{{taxi.propietario}}</td>
+                                  <td>{{taxi.propietario}}</td>
                                   <td>{{taxi.nombres}} {{taxi.apellidos}} </td>
                                   <td>{{taxi.Soat}}</td>
                                   <TD>{{taxi.Seguro}}</TD>
@@ -286,14 +286,11 @@
                             </table>
 
                         </div>
-                    </div>
-                    <div class="card-body no-print">
 
-            </div>
-          </div>
+                    </div>
+
         </div>
 
                 
              
-                </div>
-                </DIV>
+                

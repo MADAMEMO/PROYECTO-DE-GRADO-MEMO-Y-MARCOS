@@ -67,17 +67,17 @@
                 
             
 
-                    <h3 ng-show="USER.tipo == 'Admin'" class="menu-title">GEOLOCALIZACION</h3><!-- /.menu-title -->
+                    <h3  class="menu-title">GEOLOCALIZACION</h3><!-- /.menu-title -->
 
-                    
-                    <li class="menu-item-has-children dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-                            <i class="menu-icon fa fa-area-chart"></i>GPS</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
-                         
-                        </ul>
-                    </li >
+               
+                    <li>
+                        <a ui-sref="panel.GPS">
+                            <i class="menu-icon fa fa-cab"> </i>
+                            GPS
+                        </a>
+
+                    </li>
+
                     <h3 ng-show="USER.tipo == 'Admin'" class="menu-title">Extras</h3><!-- /.menu-title -->
                     <li ng-show="USER.tipo == 'Admin'" class="menu-item-has-children dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
