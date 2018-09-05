@@ -215,6 +215,7 @@ consulta = 'UPDATE carreras SET estado=? where rowid=? '
 					carrera_estado.estado = 'Cancelada';
 
 		}, function(tx){
+
 			console.log('error', tx);
 		});
 
