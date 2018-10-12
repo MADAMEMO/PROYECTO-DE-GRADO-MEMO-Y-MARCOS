@@ -50,7 +50,7 @@ $scope.ver2 = false;
   }
  $scope.traer_datos = function(){ 
 
-	consulta = 'SELECT t.*, t.rowid, c.nombres, c.apellidos 	from taxis t INNER JOIN taxistas c ON t.taxista_id = c.rowid'
+	consulta = 'SELECT t.*, t.rowid, c.nombres, c.apellidos 	from taxis t INNER JOIN taxistas c ON t.taxista_id = c.rowid where eliminado ="0"'
 		ConexionServ.query(consulta, []).then(function(result){
 			$scope.taxis = result;
 			console.log('se subio el taxi', result);
@@ -74,17 +74,16 @@ $scope.ver2 = false;
 
 		});
 
-		$scope.eliminar = function(rowid){
-		consulta = 'DELETE FROM taxis Where rowid=?'
+	$scope.eliminar = function(rowid){
+		consulta = 'UPDATE taxis SET eliminado ="1"  Where rowid=?'
 		ConexionServ.query(consulta, [rowid]).then(function(result){
 			console.log('se elimino el taxi', result);
-			
-			$scope.traer_datos()
-
+				$scope.traer_datos()
 		}, function(tx){
 			console.log('error', tx);
 		});
 	}
+
 
 
 

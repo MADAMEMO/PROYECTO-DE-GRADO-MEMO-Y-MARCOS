@@ -1,6 +1,7 @@
 var app = angular.module('TaxisFast');
 
-app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ){
+app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ, USER){
+	console.log(usu);
 
 	ConexionServ.createTables();
 
@@ -50,8 +51,8 @@ app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ){
 		fechayhora_inicio 	= fecha_inicio  + ' ' + hora_inicio;
 		fechayhora_fin 		= fecha_fin 	+ ' ' + hora_final;
 
-		consulta = 'INSERT INTO carreras (taxi_id, taxista_id, zona, fecha_ini, lugar_inicio, lugar_fin, fecha_fin, estado) VALUES(?, ?, ?, ?, ?, ?, ?, ?)'
-		ConexionServ.query(consulta, [carrera_nuevo.taxi.rowid,  carrera_nuevo.taxista.rowid, carrera_nuevo.zona, fechayhora_inicio, carrera_nuevo.lugar_inicio, carrera_nuevo.lugar_fin, fechayhora_fin, carrera_nuevo.estado]).then(function(result){
+		consulta = 'INSERT INTO carreras (taxi_id, taxista_id, zona, fecha_ini, lugar_inicio, lugar_fin, fecha_fin, estado, registrada_por) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)'
+		ConexionServ.query(consulta, [carrera_nuevo.taxi.rowid,  carrera_nuevo.taxista.rowid, carrera_nuevo.zona, fechayhora_inicio, carrera_nuevo.lugar_inicio, carrera_nuevo.lugar_fin, fechayhora_fin, carrera_nuevo.estado,usu.rowid]).then(function(result){
 			console.log('se guardo la carrera papi', result);
 					console.log(carrera_nuevo.taxi);
 			$scope.traer_datos()
@@ -62,10 +63,7 @@ app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ){
 
 
 
-  $scope.mostrartabla = function(carrera){
-
-  }
-
+  
 
 /*
 $scope.traer_datos = function(){
@@ -86,8 +84,8 @@ $scope.traer_datos = function(){
 
 	consulta = 'SELECT c.*, c.rowid, t.nombres, t.apellidos, tx.numero from carreras c ' + 
 				'INNER JOIN taxistas t ON c.taxista_id = t.rowid ' + 
-				'INNER JOIN taxis tx ON c.taxi_id = tx.rowid ' +
-				'order by c.rowid desc';
+				'INNER JOIN taxis tx ON c.taxi_id = tx.rowid WHERE c.eliminado = "0"' +
+				'order by c.rowid desc' ;
 	ConexionServ.query(consulta, []).then(function(result){
 		$scope.carreras = result;
 			for (var i = 0; i < $scope.carreras.length; i++) {
@@ -106,17 +104,13 @@ $scope.traer_datos = function(){
 
 	$scope.traer_datos()
 
-
 	$scope.eliminar = function(rowid){
-		consulta = 'DELETE FROM carreras Where rowid=?'
+		consulta = 'UPDATE carreras SET eliminado ="1"  Where rowid=?'
 		ConexionServ.query(consulta, [rowid]).then(function(result){
 			console.log('se elimino la carrera', result);
-			
-			$scope.traer_datos()
-
-
+				$scope.traer_datos()
 		}, function(tx){
-				console.log('error', tx);
+			console.log('error', tx);
 		});
 	}
 

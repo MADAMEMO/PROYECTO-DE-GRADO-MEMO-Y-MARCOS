@@ -76,7 +76,7 @@ $scope.usuario_nuevo = {
  
   }
   $scope.traer_datos = function(){
-	consulta = 'SELECT nombres, apellidos, sexo, tipo, documento, celular, fecha_nac, usuario, password, rowid from users'
+	consulta = 'SELECT nombres, apellidos, sexo, tipo, documento, celular, fecha_nac, usuario, password, rowid from users WHERE eliminado = "0"'
 	ConexionServ.query(consulta, []).then(function(result){
 		$scope.usuarios = result;
 		for (var i = 0; i < $scope.usuarios.length; i++) {
@@ -92,7 +92,7 @@ $scope.usuario_nuevo = {
 	$scope.traer_datos()
 
 	$scope.eliminar = function(rowid){
-		consulta = 'DELETE FROM users Where rowid=?'
+		consulta = 'UPDATE users SET eliminado ="1"  Where rowid=?'
 		ConexionServ.query(consulta, [rowid]).then(function(result){
 			console.log('se elimino el usuario', result);
 				$scope.traer_datos()
@@ -100,6 +100,7 @@ $scope.usuario_nuevo = {
 			console.log('error', tx);
 		});
 	}
+
 
 
 

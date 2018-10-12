@@ -71,7 +71,7 @@ $scope.traer_datos()
  
   }
  $scope.traer_datos = function(){
-	consulta = 'SELECT nombres, apellidos, sexo, documento, celular, fecha_nac, usuario, password, rowid from taxistas'
+	consulta = 'SELECT nombres, apellidos, sexo, documento, celular, fecha_nac, usuario, password, rowid from taxistas where eliminado ="0"'
 		ConexionServ.query(consulta, []).then(function(result){
 			$scope.taxistas = result;
 			for (var i = 0; i < $scope.taxistas.length; i++) {
@@ -86,13 +86,11 @@ $scope.traer_datos()
 		});
 	}
 $scope.traer_datos()
-		$scope.eliminar = function(rowid){
-		consulta = 'DELETE FROM taxistas Where rowid=?'
+	$scope.eliminar = function(rowid){
+		consulta = 'UPDATE taxistas SET eliminado ="1"  Where rowid=?'
 		ConexionServ.query(consulta, [rowid]).then(function(result){
 			console.log('se elimino el taxista', result);
-			
-			
-$scope.traer_datos()
+				$scope.traer_datos()
 		}, function(tx){
 			console.log('error', tx);
 		});
