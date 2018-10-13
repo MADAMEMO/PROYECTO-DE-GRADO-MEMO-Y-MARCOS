@@ -149,8 +149,44 @@
                         <div class="row">
                           <div class="col-sm-3">Fecha Inicio: </div>
                             <input  placeholder="Fecha Inicio" class="col-sm-4 form-control" type="date" ng-model="informe.fecha_ini"  name="">
-                          <button ng-click="traer_datos(informe)">Traer Carreras</button>
+                          <button ng-click="traer_datos4(informe)">Traer Carreras</button>
                           </div>
+                          <div class="row">
+                          <div  class="col-sm-3">Por Año</div>
+                          <select   placeholder="Meses" >
+                            <option ng-click="mostrarmes()">2017</option >
+                            <option ng-click="mostrarmes()">2018</option >
+                            <option ng-click="mostrarmes()">2019</option >
+                            <option ng-click="mostrarmes()">2020</option >
+                            <option ng-click="mostrarmes()">2021</option >
+                            <option ng-click="mostrarmes()">2022</option >
+                            <option ng-click="mostrarmes()">2023</option >
+                            <option ng-click="mostrarmes()">2024</option >
+                            <option ng-click="mostrarmes()">2025</option >
+                            <option ng-click="mostrarmes()">2026</option >
+                
+                           </select>
+                            
+                        </div>
+                        <div ng-show="mesesito" class="row">
+                          <div  class="col-sm-3">Por mes</div>
+                          <select   placeholder="Meses" ng-model="informe.fecha_ini" >
+                            <option value="1" >Enero</option >
+                            <option value="2" >Febrero</option >
+                            <option value="3" >Marzo</option >
+                            <option value="4" >Abril</option >
+                            <option value="5" >Mayo</option >
+                            <option value="6" >Julio</option >
+                            <option value="7" >Junio</option >
+                            <option value="8" >Agosto</option >
+                            <option value="9" >Septiembre</option >
+                            <option value="10" >Octubre</option >
+                            <option value="11" >Noviembre</option >
+                            <option value="12" >Diciembre</option >
+                          
+                           </select>
+                            <button ng-click="traer_datos(informe)">Traer Carreras</button>
+                        </div>
                        </div> 
 
                   <div ng-show="taximostrar"> 
@@ -207,7 +243,7 @@
 
                        <div ng-show="vertablacarreras"   class="card">
                         <div class="card-header">
-                            <strong class="card-title">Tabla Taxistas</strong>
+                            <strong class="card-title">Tabla Carreras</strong>
                         </div>
                        
                      

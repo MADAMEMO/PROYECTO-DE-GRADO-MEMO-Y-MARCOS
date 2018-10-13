@@ -50,7 +50,7 @@ $scope.ver2 = false;
   }
  $scope.traer_datos = function(){ 
 
-	consulta = 'SELECT t.*, t.rowid, c.nombres, c.apellidos 	from taxis t INNER JOIN taxistas c ON t.taxista_id = c.rowid where eliminado ="0"'
+	consulta = 'SELECT t.*, t.rowid, c.nombres, c.apellidos 	from taxis t INNER JOIN taxistas c ON t.taxista_id = c.rowid where t.eliminado ="0"'
 		ConexionServ.query(consulta, []).then(function(result){
 			$scope.taxis = result;
 			console.log('se subio el taxi', result);
@@ -110,11 +110,29 @@ $scope.ver2 = false;
 
 	$scope.guardartaxi = function(taxi_Editar){
 
+		if (taxi_Editar.modelos == undefined) {
+			alert('Debe poner modelos');
+			return;
+		}
+
+		if (taxi_Editar.placas == undefined) {
+			alert('Debe poner placas');
+			return;
+		}
+	
+		if (taxi_Editar.Soat == undefined) {
+			alert('Debe poner Soat');
+			return;
+		}
+		if (taxi_Editar.Seguro == undefined) {
+			alert('Debe poner Seguro');
+			return;
+		}
 		
 		consulta = 'UPDATE taxis SET modelo=?, numero=?, placa=?, taxista_id=?, propietario=?, Soat=?, Seguro=? where rowid=? '
 		ConexionServ.query(consulta, [taxi_Editar.modelos, taxi_Editar.numero, taxi_Editar.placas,  taxi_Editar.taxista_id, taxi_Editar.propietario, taxi_Editar.Soat, taxi_Editar.Seguro, taxi_Editar.rowid]).then(function(result){
 			console.log('se cargo el taxi', result);
-
+			$scope.traer_datos()
 		}, function(tx){
 			console.log('error', tx);
 		});

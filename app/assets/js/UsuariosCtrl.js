@@ -133,9 +133,10 @@ $scope.usuario_nuevo = {
 			return;
 		}
 
+		fecha_nac = '' + usuario_Editar.fecha_nac.getFullYear() + '-' + (usuario_Editar.fecha_nac.getMonth() +1)  + '-' + usuario_Editar.fecha_nac.getDate();
 
 		consulta = 'UPDATE users SET  nombres=?, apellidos=?, sexo=?, tipo=?, documento=?, celular=?, fecha_nac=?, usuario=?, password=? where rowid=? '
-		ConexionServ.query(consulta, [usuario_Editar.nombres, usuario_Editar.apellidos, usuario_Editar.sexo, usuario_Editar.tipo, usuario_Editar.documento, usuario_Editar.celular, usuario_Editar.fecha_nac, usuario_Editar.usuario, usuario_Editar.password, usuario_Editar.rowid]).then(function(result){
+		ConexionServ.query(consulta, [usuario_Editar.nombres, usuario_Editar.apellidos, usuario_Editar.sexo, usuario_Editar.tipo, usuario_Editar.documento, usuario_Editar.celular, fecha_nac, usuario_Editar.usuario, usuario_Editar.password, usuario_Editar.rowid]).then(function(result){
 			console.log('se cargo el usuario', result);
 				$scope.traer_datos()
 		}, function(tx){

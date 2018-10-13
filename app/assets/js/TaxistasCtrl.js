@@ -122,8 +122,11 @@ $scope.traer_datos()
 	$scope.guardartaxista = function(taxista_Editar){
 
 		
+		fecha_nac = '' + taxista_Editar.fecha_nac.getFullYear() + '-' + (taxista_Editar.fecha_nac.getMonth() + 1) + '-' + taxista_Editar.fecha_nac.getDate() ;	
+
+
 		consulta = 'UPDATE taxistas SET  nombres=?, apellidos=?, sexo=?, documento=?, celular=?, fecha_nac=?, usuario=?, password=? where rowid=? '
-		ConexionServ.query(consulta, [taxista_Editar.nombres, taxista_Editar.apellidos, taxista_Editar.sexo, taxista_Editar.documento, taxista_Editar.celular, taxista_Editar.fecha_nac, taxista_Editar.usuario, taxista_Editar.password, taxista_Editar.rowid]).then(function(result){
+		ConexionServ.query(consulta, [taxista_Editar.nombres, taxista_Editar.apellidos, taxista_Editar.sexo, taxista_Editar.documento, taxista_Editar.celular, fecha_nac, taxista_Editar.usuario, taxista_Editar.password, taxista_Editar.rowid]).then(function(result){
 			console.log('se cargo el taxista', result);
 			$scope.traer_datos()
 		}, function(tx){

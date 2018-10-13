@@ -6,6 +6,12 @@ ConexionServ.createTables();
 
   
 $scope.ver = false;
+$scope.mesesito = false;
+
+$scope.mostrarmes = function(){
+
+	$scope.mesesito = ! $scope.mesesito
+}
   
 $scope.ver2 = false;
 $scope.informe = {};
@@ -51,7 +57,7 @@ $scope.vertablacarreras = false;
 
  
 
-	consulta = 'SELECT *, rowid from users'
+	consulta = 'SELECT *, rowid from users where eliminado = 0'
 	ConexionServ.query(consulta, []).then(function(result){
 		$scope.usuarios = result;
 	
@@ -62,7 +68,7 @@ $scope.vertablacarreras = false;
 	})
 
 
-	consulta = 'SELECT *, rowid from taxistas'
+	consulta = 'SELECT *, rowid from taxistas where eliminado = 0'
 	ConexionServ.query(consulta, []).then(function(result){
 		$scope.taxistas = result;
 	
@@ -73,7 +79,7 @@ $scope.vertablacarreras = false;
 	})
 
 
-	consulta = 'SELECT *, rowid from taxis'
+	consulta = 'SELECT *, rowid from taxis where eliminado = 0'
 	ConexionServ.query(consulta, []).then(function(result){
 		$scope.taxis = result;
 	
@@ -84,6 +90,34 @@ $scope.vertablacarreras = false;
 	})
 
 	
+
+$scope.traer_datos4 = function(informe){
+
+
+
+fecha_inicios = informe.fecha_ini.getMonth() ;
+
+
+		consulta = 'SELECT c.*, c.rowid, t.nombres, t.apellidos, tx.numero from carreras c ' + 
+				'INNER JOIN taxistas t ON c.taxista_id = t.rowid ' + 
+				'INNER JOIN taxis tx ON c.taxi_id = tx.rowid ' +
+				'where c.fecha_ini = ?';
+
+			ConexionServ.query(consulta, [fecha_inicios]).then(function(result){
+			$scope.carreras = result;
+	
+			console.log('se trajeron las carreras',result);
+
+		}, function(tx){
+			console.log('error', tx);
+
+		})
+
+
+		$scope.vertablacarreras = !$scope.vertablacarreras;
+
+	
+	}
 
 $scope.traer_datos = function(informe){
 
@@ -170,6 +204,10 @@ $scope.traer_datos3 = function(informe){
 	$scope.ver2 = false;
 	$scope.ver4 = false;
 	$scope.ver3 = false;
+	vertablacarreras = false;
+	$scope.fechamostrar = false;
+	$scope.taximostrar = false;
+	$scope.taxistamostrar = false;
 
 	}
 		$scope.mostrartabla2 = function(){
@@ -177,6 +215,11 @@ $scope.traer_datos3 = function(informe){
 		$scope.ver = false;
 	$scope.ver4 = false;
 	$scope.ver3 = false;	
+	
+	$scope.vertablacarreras = false;
+		$scope.fechamostrar = false;
+	$scope.taximostrar = false;
+	$scope.taxistamostrar = false;
 
 	}
 		$scope.mostrartabla3 = function(){
@@ -184,6 +227,10 @@ $scope.traer_datos3 = function(informe){
 	$scope.ver2 = false;
 	$scope.ver4 = false;
 	$scope.ver = false;
+	$scope.vertablacarreras = false;
+		$scope.fechamostrar = false;
+	$scope.taximostrar = false;
+	$scope.taxistamostrar = false;
 
 
 	}
@@ -192,6 +239,10 @@ $scope.traer_datos3 = function(informe){
 	$scope.ver2 = false;
 	$scope.ver = false;
 	$scope.ver3 = false;
+	$scope.vertablacarreras = false;
+		$scope.fechamostrar = false;
+	$scope.taximostrar = false;
+	$scope.taxistamostrar = false;
 	}
 
  
