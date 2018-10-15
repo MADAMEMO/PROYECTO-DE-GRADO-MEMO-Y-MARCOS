@@ -47,6 +47,14 @@ angular.module('TaxisFast', [
 			templateUrl: 'templates/taxistas.html'
 
 		})
+
+		.state('panel.nube',{
+			name: 'nube',
+			url: '/nube',
+			controller: 'nubeCtrl',
+			templateUrl: 'templates/nube.html'
+
+		})	
 	   
 	   .state('panel.usuarios',{
 			name: 'usuarios',

@@ -114,7 +114,6 @@
                                   <th scope="col">Celular</th>
                                   <th scope="col">Fecha De Nacimiento</th>
                                   <th scope="col">Usuario</th>
-                                  <th scope="col">Contraseña</th>
                                   <TH>Editar/Eliminar</TH>
                                  
                                 </tr>
@@ -130,12 +129,12 @@
                                    <TD>{{usuario.celular}}</TD>
                                   <TD>{{usuario.fecha_nac | date:'dd/MM/yyyy'}}</TD>
                                   <TD>{{usuario.usuario}}</TD>
-                                  <TD>{{usuario.password}}</TD>
+                    
                                   <TD>
                                        <button ng-click="editar(usuario)" type="button" class="btn btn-info btn-sm">
                                             <span class="fa fa-pencil"></span>  
                                          </button>
-                                      <button type="button"  ng-click="eliminar(usuario.rowid)" class="btn btn-danger btn-sm">
+                                      <button type="button"  ng-click="eliminar(usuario)" class="btn btn-danger btn-sm">
                                           <span class="fa fa-times"></span>  
                                         </button>
                                  </TD>
@@ -198,10 +197,7 @@
                         <div class="col-sm-2">Contraseña: </div>
                           <input  placeholder="Contraseña" class="col-sm-4 form-control" type="password" ng-model="usuario_Editar.password"  name="">
                         </div>
-                              <div class="row">
-                        <div class="col-sm-2">Repita Contraseña: </div>
-                          <input  placeholder="Contraseña" class="col-sm-4 form-control" type="password" ng-model="usuario_Editar.password2"  name="">
-                      </div>
+                 
                         <br>
                           <button  ng-click="GUARDARUSUARIO(usuario_Editar)" >Editar</button> <button ng-click="cancelar()">Atras</button>
                       </form>

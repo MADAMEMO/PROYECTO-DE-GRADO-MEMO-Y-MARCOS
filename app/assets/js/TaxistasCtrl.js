@@ -86,16 +86,27 @@ $scope.traer_datos()
 		});
 	}
 $scope.traer_datos()
-	$scope.eliminar = function(rowid){
-		consulta = 'UPDATE taxistas SET eliminado ="1"  Where rowid=?'
-		ConexionServ.query(consulta, [rowid]).then(function(result){
-			console.log('se elimino el taxista', result);
-				$scope.traer_datos()
-		}, function(tx){
-			console.log('error', tx);
-		});
-	}
 
+	$scope.eliminar = function(taxista){
+		console.log(taxista)
+		if (taxista.id == null) {
+		consulta = 'DELETE FROM taxistas Where rowid=?'
+			ConexionServ.query(consulta, [taxista.rowid]).then(function(result){
+				console.log('se elimino el taxista en la compu', result);
+					$scope.traer_datos()
+			}, function(tx){
+				console.log('error', tx);
+			});
+		} else {
+				consulta = 'UPDATE taxistas SET eliminado ="1"  Where rowid=?'
+			ConexionServ.query(consulta, [taxista.rowid]).then(function(result){
+				console.log('se elimino el taxista en la nube', result);
+					$scope.traer_datos()
+			}, function(tx){
+				console.log('error', tx);
+			});
+		}	
+	}
 
 
 	$scope.mostrareditar = function(){
@@ -124,14 +135,24 @@ $scope.traer_datos()
 		
 		fecha_nac = '' + taxista_Editar.fecha_nac.getFullYear() + '-' + (taxista_Editar.fecha_nac.getMonth() + 1) + '-' + taxista_Editar.fecha_nac.getDate() ;	
 
-
-		consulta = 'UPDATE taxistas SET  nombres=?, apellidos=?, sexo=?, documento=?, celular=?, fecha_nac=?, usuario=?, password=? where rowid=? '
+		if (taxista_Editar.id == null) {
+					consulta = 'UPDATE taxistas SET  nombres=?, apellidos=?, sexo=?, documento=?, celular=?, fecha_nac=?, usuario=?, password=? where rowid=? '
 		ConexionServ.query(consulta, [taxista_Editar.nombres, taxista_Editar.apellidos, taxista_Editar.sexo, taxista_Editar.documento, taxista_Editar.celular, fecha_nac, taxista_Editar.usuario, taxista_Editar.password, taxista_Editar.rowid]).then(function(result){
-			console.log('se cargo el taxista', result);
+			console.log('se cargo el taxista en la compu', result);
 			$scope.traer_datos()
 		}, function(tx){
 			console.log('error', tx);
 		});
+	} else	{
+				consulta = 'UPDATE taxistas SET  nombres=?, apellidos=?, sexo=?, documento=?, celular=?, fecha_nac=?, usuario=?, password=?, modificado=? where rowid=? '
+		ConexionServ.query(consulta, [taxista_Editar.nombres, taxista_Editar.apellidos, taxista_Editar.sexo, taxista_Editar.documento, taxista_Editar.celular, fecha_nac, taxista_Editar.usuario, taxista_Editar.password, "1", taxista_Editar.rowid]).then(function(result){
+			console.log('se cargo el taxista en la nube', result);
+			$scope.traer_datos()
+		}, function(tx){
+			console.log('error', tx);
+		});
+	}
+
 	
 $scope.ver = false;
 

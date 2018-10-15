@@ -104,16 +104,26 @@ $scope.traer_datos = function(){
 
 	$scope.traer_datos()
 
-	$scope.eliminar = function(rowid){
-		consulta = 'UPDATE carreras SET eliminado ="1"  Where rowid=?'
-		ConexionServ.query(consulta, [rowid]).then(function(result){
-			console.log('se elimino la carrera', result);
-				$scope.traer_datos()
-		}, function(tx){
-			console.log('error', tx);
-		});
+	$scope.eliminar = function(carrera){
+		console.log(carrera)
+		if (carrera.id == null) {
+		consulta = 'DELETE FROM carreras Where rowid=?'
+			ConexionServ.query(consulta, [carrera.rowid]).then(function(result){
+				console.log('se elimino el carrera en la compu', result);
+					$scope.traer_datos()
+			}, function(tx){
+				console.log('error', tx);
+			});
+		} else {
+				consulta = 'UPDATE carreras SET eliminado ="1"  Where rowid=?'
+			ConexionServ.query(consulta, [carrera.rowid]).then(function(result){
+				console.log('se elimino el carrera en la nube', result);
+					$scope.traer_datos()
+			}, function(tx){
+				console.log('error', tx);
+			});
+		}	
 	}
-
 
 
 	$scope.mostrareditar = function(){
@@ -148,16 +158,26 @@ $scope.traer_datos = function(){
 	
 		fechayhora_inicio 	= fecha_inicio  + ' ' + hora_inicio;
 		fechayhora_fin 		= fecha_fin 	+ ' ' + hora_final;
-
-		consulta = 'UPDATE carreras SET  taxi_id=?, taxista_id=?, zona=?, fecha_ini=?, lugar_inicio=?, lugar_fin=?, fecha_fin=?, estado=? where rowid=? '
+ if (carrera_Editar.id == null) {
+ 		consulta = 'UPDATE carreras SET  taxi_id=?, taxista_id=?, zona=?, fecha_ini=?, lugar_inicio=?, lugar_fin=?, fecha_fin=?, estado=? where rowid=? '
 		ConexionServ.query(consulta, [carrera_Editar.taxi.rowid, carrera_Editar.taxista.rowid, carrera_Editar.zona, fechayhora_inicio, carrera_Editar.lugar_inicio, carrera_Editar.lugar_fin, fechayhora_fin, carrera_Editar.estado, carrera_Editar.rowid]).then(function(result){
-			console.log('se cargo la carrera', result);
-
-$scope.traer_datos()
- $scope.ver = false;
-		}, function(tx){
-			console.log('error', tx);
-		});
+			console.log('se cargo la carrera en la compu', result);
+		$scope.traer_datos()
+				}, function(tx){
+					console.log('error', tx);
+				});
+	
+	} else {
+			consulta = 'UPDATE carreras SET  taxi_id=?, taxista_id=?, zona=?, fecha_ini=?, lugar_inicio=?, lugar_fin=?, fecha_fin=?, estado=?, modificado=? where rowid=? '
+		ConexionServ.query(consulta, [carrera_Editar.taxi.rowid, carrera_Editar.taxista.rowid, carrera_Editar.zona, fechayhora_inicio, carrera_Editar.lugar_inicio, carrera_Editar.lugar_fin, fechayhora_fin, carrera_Editar.estado, "1", carrera_Editar.rowid]).then(function(result){
+			console.log('se cargo la carrera en la nube', result);
+		$scope.traer_datos()
+				}, function(tx){
+					console.log('error', tx);
+				});
+	
+	}
+				 $scope.ver = false;
 	}	
 
 

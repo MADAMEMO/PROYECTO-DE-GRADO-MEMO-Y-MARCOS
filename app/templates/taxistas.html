@@ -111,7 +111,7 @@
                                   <th scope="col">Celular</th>
                                   <th scope="col">Fecha De Nacimiento</th>
                                   <th scope="col">Usuario</th>
-                                  <th scope="col">Contraseña</th>
+                             
                                   <TH>Editar/Eliminar</TH>
                                  
                                 </tr>
@@ -126,12 +126,12 @@
                                    <TD>{{taxista.celular}}</TD>
                                   <TD>{{taxista.fecha_nac | date:'dd/MM/yyyy'}}</TD>
                                   <TD>{{taxista.usuario}}</TD>
-                                  <TD>{{taxista.password}}</TD>
+                      
                                   <TD>
                                        <button ng-click="editar(taxista)" type="button" class="btn btn-info btn-sm">
                                             <span class="fa fa-pencil"></span>  
                                          </button>
-                                      <button type="button"  ng-click="eliminar(taxista.rowid)" class="btn btn-danger btn-sm">
+                                      <button type="button"  ng-click="eliminar(taxista)" class="btn btn-danger btn-sm">
                                           <span class="fa fa-times"></span>  
                                         </button>
                                  </TD>
@@ -188,10 +188,7 @@
                     <input  placeholder="Contraseña" class="col-sm-4 form-control" type="password" ng-model="taxista_Editar.password"  name="">
                   </div>
 
-                  <div class="row">
-                    <div class="col-sm-2">Repetir Contraseña: </div>
-                    <input  placeholder="Repetir Contraseña" class="col-sm-4 form-control" type="password" ng-model="taxista_Editar.password2"  name="">
-                  </div>
+         
                   <br>
                   <button  ng-click="guardartaxista(taxista_Editar)" >Editar</button> <button ng-click="cancelar()">Atras</button>
               </form>

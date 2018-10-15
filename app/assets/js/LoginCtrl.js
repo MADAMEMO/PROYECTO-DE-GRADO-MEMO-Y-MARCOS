@@ -713,152 +713,144 @@ ConexionServ.createTables();
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-			ConexionServ.query(consulta, [' Jimmy Orosman', 'Guerrero Rincon   ', 'M', 'JimmyOr', '86.082.062', '311 281 3785', '123']).then(function(result) {
+			ConexionServ.query(consulta, [' Jimmy Orosman', 'Guerrero Rincon   ', 'M', 'JimmyLa', '86.082.062', '311 281 3785', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-			ConexionServ.query(consulta, [' Odila', 'Solano Rodriguez  ', 'F', 'OdilaSo', '68.306.982', '3108579063', '123',]).then(function(result) {
+			
+	
+			ConexionServ.query(consulta, [' Faber Giovanny', 'Parales Barrera  ', 'M', 'Giovanny', '1.116.853.819', '3311 484 4932', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-			ConexionServ.query(consulta, [' Odila', 'Solano Rodriguez  ', 'M', 'OdilaSo', '68.306.982', '3108579063', '123']).then(function(result) {
+		ConexionServ.query(consulta, [' Carlos Andres', 'Avila Castiblanco ', 'M', 'Andres22', '96.194.131', '313 232 8642', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-			ConexionServ.query(consulta, [' Faber Giovanny', 'Parales Barrera  ', 'M', 'OdilaSo', '1.116.853.819', '3311 484 4932', '123']).then(function(result) {
+			ConexionServ.query(consulta, [' Edgar Esneyder ', 'Carrera Yunda  ', 'M', 'Esneyder', '1.116.863.223', '3222914708', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-		ConexionServ.query(consulta, [' Carlos Andres', 'Avila Castiblanco ', 'M', 'OdilaSo', '96.194.131', '313 232 8642', '123']).then(function(result) {
+			ConexionServ.query(consulta, [' Martha Nancy', 'Solano Rodriguez  ', 'F', 'Martha', '40.774.728', '310 862 1183', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-			ConexionServ.query(consulta, [' Edgar Esneyder ', 'Carrera Yunda  ', 'M', 'OdilaSo', '1.116.863.223', '3222914708', '123']).then(function(result) {
+		ConexionServ.query(consulta, [' Jose Tebaldo', 'Solano Leon   ', 'M', 'Tebaldo', '74.300.064', '313 821 5679', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-			ConexionServ.query(consulta, [' Martha Nancy', 'Solano Rodriguez  ', 'F', 'OdilaSo', '40.774.728', '310 862 1183', '123']).then(function(result) {
+			ConexionServ.query(consulta, [' Alonso ', 'Florez Heber  ', 'M', 'Alonso', '96.192.501', '3114445393', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-		ConexionServ.query(consulta, [' Jose Tebaldo', 'Solano Leon   ', 'M', 'OdilaSo', '74.300.064', '313 821 5679', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Roberth Leandro ', 'Parales Barrera  ', 'M', 'Roberth', '1.116.863.405', '320 242 2938', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-			ConexionServ.query(consulta, [' Alonso ', 'Florez Heber  ', 'M', 'OdilaSo', '96.192.501', '3114445393', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Gladys ', 'Castillo Torres   ', 'F', 'Gladys', '24.245.406', '3208568416 ', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Roberth Leandro ', 'Parales Barrera  ', 'M', 'OdilaSo', '1.116.863.405', '320 242 2938', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Lida Rocio ', 'Cruz Lizcano   ', 'M', 'Lida', '60.335.897', '3112679405', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Gladys ', 'Castillo Torres   ', 'F', 'OdilaSo', '24.245.406', '3208568416 ', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Faber Giovanny ', 'Parales Barrera  ', 'M', 'Faber', '1.116.853.819', '311 484 4932', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Lida Rocio ', 'Cruz Lizcano   ', 'M', 'OdilaSo', '60.335.897', '3112679405', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Romulo Jose  ', 'Bello Ramirez  ', 'M', 'Romulo', '86.088.510', '3146562341', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Faber Giovanny ', 'Parales Barrera  ', 'M', 'OdilaSo', '1.116.853.819', '311 484 4932', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Deibin Johan ', 'Olaya Goyeneche  ', 'M', 'Deibin', '1.116.856.895', '3125045393', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Romulo Jose  ', 'Bello Ramirez  ', 'M', 'OdilaSo', '86.088.510', '3146562341', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Jaider  ', 'Castillo Campos   ', 'M', 'Jaider11', '5.047.642', '311233526', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Deibin Johan ', 'Olaya Goyeneche  ', 'M', 'OdilaSo', '1.116.856.895', '3125045393', '123']).then(function(result) {
+			ConexionServ.query(consulta, [' Luis Alberto ', 'Rodriguez Rodriguez  ', 'M', 'Luis51', '19.381.240', '310 766 9570', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Jaider  ', 'Castillo Campos   ', 'M', 'OdilaSo', '5.047.642', '311233526', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Jorge Alberto  ', 'Sosa Valderrama  ', 'M', 'Jorge22', '7.217.328', '3115571308', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-			ConexionServ.query(consulta, [' Luis Alberto ', 'Rodriguez Rodriguez  ', 'M', 'OdilaSo', '19.381.240', '310 766 9570', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Ivan ', 'Ariza Niño  ', 'M', 'Ivan', '96.191.672', '3125422882', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Jorge Alberto  ', 'Sosa Valderrama  ', 'M', 'OdilaSo', '7.217.328', '3115571308', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Elvis Moises ', 'Valbuena Cobos  ', 'M', 'Elvis', '1.116.852.129', '3508216117', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Ivan ', 'Ariza Niño  ', 'M', 'OdilaSo', '96.191.672', '3125422882', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Humberto  ', 'Herrera Rodriguez   ', 'M', 'Humberto', '96.194.752', '3115859125', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Elvis Moises ', 'Valbuena Cobos  ', 'M', 'OdilaSo', '1.116.852.129', '3508216117', '123']).then(function(result) {
+				ConexionServ.query(consulta, ['  Carlina ', 'Correa Antolinez ', 'M', 'Carlina', '24.248.877', '3124819799', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Humberto  ', 'Herrera Rodriguez   ', 'M', 'OdilaSo', '96.194.752', '3115859125', '123']).then(function(result) {
+			ConexionServ.query(consulta, [' Maria Kaory ', 'Rojas Lagos ', 'M', 'Maria22', '68.305.243', '3202758531', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, ['  Carlina ', 'Correa Antolinez ', 'M', 'OdilaSo', '24.248.877', '3124819799', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Marisol ', 'Rivera Espinosa   ', 'M', 'Marisol', '68.304.364', '3142679470', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-			ConexionServ.query(consulta, [' Maria Kaory ', 'Rojas Lagos ', 'M', 'OdilaSo', '68.305.243', '3202758531', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Amin Exdunio ', 'Rios Gomez ', 'M', 'Amin', '17.547.961', '3124974989', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Marisol ', 'Rivera Espinosa   ', 'M', 'OdilaSo', '68.304.364', '3142679470', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Ildebrando ', 'Leal Carvajal ', 'M', 'Ildebrando', '19.397.853', '3107704276', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Amin Exdunio ', 'Rios Gomez ', 'M', 'OdilaSo', '17.547.961', '3124974989', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Willian Fernando  ', 'Duque Acosta', 'M', 'Willian', '17.548.791', '3103231887', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Ildebrando ', 'Leal Carvajal ', 'M', 'OdilaSo', '19.397.853', '3107704276', '123']).then(function(result) {
+				ConexionServ.query(consulta, [' Nancy Consuelo ', 'Martinez Leon ', 'F', 'Nancy', '23.588.863', '3142996805', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Willian Fernando  ', 'Duque Acosta', 'M', 'OdilaSo', '17.548.791', '3103231887', '123']).then(function(result) {
+			ConexionServ.query(consulta, [' Judith ', 'Manrique Peña  ', 'F', 'Judith', '51.707.358', '3163607652', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-				ConexionServ.query(consulta, [' Nancy Consuelo ', 'Martinez Leon ', 'F', 'OdilaSo', '23.588.863', '3142996805', '123']).then(function(result) {
-
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-			ConexionServ.query(consulta, [' Judith ', 'Manrique Peña  ', 'F', 'OdilaSo', '51.707.358', '3163607652', '123']).then(function(result) {
-
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-			ConexionServ.query(consulta, ['  German	 ', 'Mora Gutierrez ', 'M', 'OdilaSo', '96.189.594', '3203439507', '123']).then(function(result) {
+			ConexionServ.query(consulta, ['  German	 ', 'Mora Gutierrez ', 'M', 'German', '96.189.594', '3203439507', '123']).then(function(result) {
 
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);

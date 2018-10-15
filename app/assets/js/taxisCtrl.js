@@ -74,14 +74,25 @@ $scope.ver2 = false;
 
 		});
 
-	$scope.eliminar = function(rowid){
-		consulta = 'UPDATE taxis SET eliminado ="1"  Where rowid=?'
-		ConexionServ.query(consulta, [rowid]).then(function(result){
-			console.log('se elimino el taxi', result);
-				$scope.traer_datos()
-		}, function(tx){
-			console.log('error', tx);
-		});
+	$scope.eliminar = function(taxi){
+		console.log(taxi)
+		if (taxi.id == null) {
+		consulta = 'DELETE FROM taxis Where rowid=?'
+			ConexionServ.query(consulta, [taxi.rowid]).then(function(result){
+				console.log('se elimino el taxi en la compu', result);
+					$scope.traer_datos()
+			}, function(tx){
+				console.log('error', tx);
+			});
+		} else {
+				consulta = 'UPDATE taxis SET eliminado ="1"  Where rowid=?'
+			ConexionServ.query(consulta, [taxi.rowid]).then(function(result){
+				console.log('se elimino el taxi en la nube', result);
+					$scope.traer_datos()
+			}, function(tx){
+				console.log('error', tx);
+			});
+		}	
 	}
 
 
@@ -129,13 +140,25 @@ $scope.ver2 = false;
 			return;
 		}
 		
-		consulta = 'UPDATE taxis SET modelo=?, numero=?, placa=?, taxista_id=?, propietario=?, Soat=?, Seguro=? where rowid=? '
+		if (taxi_Editar.id == null) {
+				consulta = 'UPDATE taxis SET modelo=?, numero=?, placa=?, taxista_id=?, propietario=?, Soat=?, Seguro=? where rowid=? '
 		ConexionServ.query(consulta, [taxi_Editar.modelos, taxi_Editar.numero, taxi_Editar.placas,  taxi_Editar.taxista_id, taxi_Editar.propietario, taxi_Editar.Soat, taxi_Editar.Seguro, taxi_Editar.rowid]).then(function(result){
-			console.log('se cargo el taxi', result);
+			console.log('se cargo el taxi en el compu', result);
 			$scope.traer_datos()
 		}, function(tx){
 			console.log('error', tx);
 		});
+
+		} else {
+		consulta = 'UPDATE taxis SET modelo=?, numero=?, placa=?, taxista_id=?, propietario=?, Soat=?, Seguro=?, modificado=? where rowid=? '
+		ConexionServ.query(consulta, [taxi_Editar.modelos, taxi_Editar.numero, taxi_Editar.placas,  taxi_Editar.taxista_id, taxi_Editar.propietario, taxi_Editar.Soat, taxi_Editar.Seguro, "1", taxi_Editar.rowid]).then(function(result){
+			console.log('se cargo el taxi en la nubeichon', result);
+			$scope.traer_datos()
+		}, function(tx){
+			console.log('error', tx);
+		});
+		}
+	
 			$scope.ver = false;
 	}	
 

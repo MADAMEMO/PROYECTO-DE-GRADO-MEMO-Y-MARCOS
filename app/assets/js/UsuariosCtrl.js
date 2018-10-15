@@ -91,26 +91,34 @@ $scope.usuario_nuevo = {
 }
 	$scope.traer_datos()
 
-	$scope.eliminar = function(rowid){
-		consulta = 'UPDATE users SET eliminado ="1"  Where rowid=?'
-		ConexionServ.query(consulta, [rowid]).then(function(result){
-			console.log('se elimino el usuario', result);
-				$scope.traer_datos()
-		}, function(tx){
-			console.log('error', tx);
-		});
+		
+
+
+	$scope.eliminar = function(usuario){
+		console.log(usuario)
+		if (usuario.id == null) {
+		consulta = 'DELETE FROM users Where rowid=?'
+			ConexionServ.query(consulta, [usuario.rowid]).then(function(result){
+				console.log('se elimino el usuario', result);
+					$scope.traer_datos()
+			}, function(tx){
+				console.log('error', tx);
+			});
+		} else {
+				consulta = 'UPDATE users SET eliminado ="1"  Where rowid=?'
+			ConexionServ.query(consulta, [usuario.rowid]).then(function(result){
+				console.log('se elimino el usuario en', result);
+					$scope.traer_datos()
+			}, function(tx){
+				console.log('error', tx);
+			});
+		}	
 	}
-
-
-
 
 	$scope.mostrareditar = function(){
 		$scope.tablaeditar = true;
-
 	}
 
-
- 
   $scope.editar = function(usuario){
    
    	$scope.ver = true;
@@ -135,17 +143,25 @@ $scope.usuario_nuevo = {
 
 		fecha_nac = '' + usuario_Editar.fecha_nac.getFullYear() + '-' + (usuario_Editar.fecha_nac.getMonth() +1)  + '-' + usuario_Editar.fecha_nac.getDate();
 
-		consulta = 'UPDATE users SET  nombres=?, apellidos=?, sexo=?, tipo=?, documento=?, celular=?, fecha_nac=?, usuario=?, password=? where rowid=? '
+		if (usuario_Editar.id == null) {
+				consulta = 'UPDATE users SET  nombres=?, apellidos=?, sexo=?, tipo=?, documento=?, celular=?, fecha_nac=?, usuario=?, password=? where rowid=? '
 		ConexionServ.query(consulta, [usuario_Editar.nombres, usuario_Editar.apellidos, usuario_Editar.sexo, usuario_Editar.tipo, usuario_Editar.documento, usuario_Editar.celular, fecha_nac, usuario_Editar.usuario, usuario_Editar.password, usuario_Editar.rowid]).then(function(result){
-			console.log('se cargo el usuario', result);
+			console.log('se cargo el usuario en la compu', result);
 				$scope.traer_datos()
 		}, function(tx){
 			console.log('error', tx);
 		});
-		$scope.ver = false;
+	}  else {
+			consulta = 'UPDATE users SET  nombres=?, apellidos=?, sexo=?, tipo=?, documento=?, celular=?, fecha_nac=?, usuario=?, password=?, modificado=? where rowid=? '
+		ConexionServ.query(consulta, [usuario_Editar.nombres, usuario_Editar.apellidos, usuario_Editar.sexo, usuario_Editar.tipo, usuario_Editar.documento, usuario_Editar.celular, fecha_nac, usuario_Editar.usuario, usuario_Editar.password, "1", usuario_Editar.rowid]).then(function(result){
+			console.log('se cargo el usuario en la nube', result);
+				$scope.traer_datos()
+		}, function(tx){
+			console.log('error', tx);
+		});
+	}
+
+	$scope.ver = false;
 	}	
-
-
-
 
 });
