@@ -135,14 +135,11 @@
                       </button>
                       <div uib-dropdown-menu class="dropdown-menu" aria-labelledby="notification">
                         <p class="red">Notificaciones</p>
-                        <a class="dropdown-item media bg-flat-color-1" href="">
+                        <a class="dropdown-item media bg-flat-color-1" href="" ng-click="descargar_datos()">
                             <i class="fa fa-check"></i>
-                            <p>Una.</p>
+                            <p ng-show="kedarrata">DESCARGAR DATOS INICIALES</p>
                         </a>
-                        <a class="dropdown-item media bg-flat-color-5" href="">
-                            <i class="fa fa-warning"></i>
-                            <p>Dos.</p>
-                        </a>
+                
                       </div>
                     </div>
 
@@ -191,6 +188,7 @@
                     <ol class="breadcrumb text-right">
                         <li class="active">Bienvenido       {{USER.usuario}}</li>
                     </ol>
+                    
                 </div>
             </div>
         </div>

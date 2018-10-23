@@ -1,6 +1,6 @@
 var app = angular.module('TaxisFast');
 
-app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ, USER){
+app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ, USER, $location, $anchorScroll){
 	console.log(usu);
 
 	ConexionServ.createTables();
@@ -21,21 +21,25 @@ app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ, US
 	$scope.ver2 = true;
 	$scope.vercarreras = false;
 
-		consulta = 'SELECT *, rowid FROM taxistas';
-		ConexionServ.query(consulta, []).then(function(result){
-			$scope.taxistas = result;
-		}, function(tx){
-			console.log('error', tx);
-		});
+	consulta = 'SELECT *, rowid FROM taxistas';
+	ConexionServ.query(consulta, []).then(function(result){
+		$scope.taxistas = result;
+	}, function(tx){
+		console.log('error', tx);
+	});
 
 
-		consulta = 'SELECT *, rowid  FROM taxis';
-		ConexionServ.query(consulta, []).then(function(result){
-			$scope.taxis = result;
-		}, function(tx){
-			console.log('error', tx);
-		});
-		
+	consulta = 'SELECT *, rowid  FROM taxis';
+	ConexionServ.query(consulta, []).then(function(result){
+		$scope.taxis = result;
+	}, function(tx){
+		console.log('error', tx);
+	});
+
+
+
+
+	
 
 
 	$scope.guardarc = function(carrera_nuevo){
@@ -133,18 +137,21 @@ $scope.traer_datos = function(){
 
 
  
-  $scope.editar = function(carrera){
+	$scope.editar = function(carrera){
    
-   	$scope.ver = true;
-   $scope.carrera_Editar = carrera;
+		$scope.ver = true;
+		$scope.carrera_Editar = carrera;
+
+		$location.hash('id-editar-carrera');
+		$anchorScroll();
 	
-  }
+	}
     
-  $scope.cancelar = function(){
- $scope.ver2 = false;
-   	$scope.ver = false;
-	
-  }
+	$scope.cancelar = function(){
+		$scope.ver2 = false;
+		$scope.ver = false;
+		$location.hash('');
+	}
     
 
 	$scope.guardarcarrera = function(carrera_Editar){

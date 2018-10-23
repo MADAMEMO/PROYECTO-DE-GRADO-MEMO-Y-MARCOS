@@ -2,6 +2,7 @@ var app = angular.module('TaxisFast');
 
 app.controller('ApplicationCtrl', function($scope, AuthServ, $state){
 	
+	$scope.kedarrata = true;
 	$scope.colapsado = 'false';
 	
 });
@@ -55,12 +56,6 @@ app.controller('PanelCtrl', function($scope, AuthServ, $state, USER, $firebaseAr
 	}
 
 });
-
-
-
-
-
-
 
 
 window.fixDate = function(fec){

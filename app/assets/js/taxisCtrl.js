@@ -1,6 +1,6 @@
 var app = angular.module('TaxisFast');
 
-app.controller('taxisCtrl', function($scope, $http, $filter, ConexionServ){
+app.controller('taxisCtrl', function($scope, $http, $filter, ConexionServ, $location, $anchorScroll){
 
 ConexionServ.createTables();
 
@@ -109,12 +109,15 @@ $scope.ver2 = false;
    
    	$scope.ver = true;
    $scope.taxi_Editar = taxi;
+   		$location.hash('id-editar-taxi');
+		$anchorScroll();
 	
   }
     
   $scope.cancelar = function(){
 	$scope.ver2 = false;
    	$scope.ver = false;
+   	$location.hash('');
 	
   }
     

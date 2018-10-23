@@ -1,6 +1,7 @@
+
 var app = angular.module('TaxisFast');
 
-app.controller('UsuariosCtrl', function($scope, $http, $filter, ConexionServ){
+app.controller('UsuariosCtrl', function($scope, $http, $filter, ConexionServ, $location, $anchorScroll,toastr){
 
 ConexionServ.createTables();
 
@@ -14,43 +15,43 @@ $scope.usuario_nuevo = {
 
 	$scope.CREARUSUARIO = function(usuario_nuevo){
 			if (usuario_nuevo.nombres == undefined) {
-			alert('Debe poner nombres');
+				toastr.warning('Debe Poner Nombres');	
 			return;
 		}
 
 		if (usuario_nuevo.apellidos == undefined) {
-			alert('Debe poner apellidos');
+				toastr.warning('Debe Poner Apellidos');
 			return;
 		}
 		if (usuario_nuevo.sexo == undefined) {
-			alert('Debe poner sexo');
+				toastr.warning('Debe Poner Sexo');
 			return;
 		}
 		if (usuario_nuevo.tipo == undefined) {
-			alert('Debe poner tipo');
+				toastr.warning('Debe Poner Tipo');
 			return;
 		}
 		if (usuario_nuevo.documento == undefined) {
-			alert('Debe poner documento');
+				toastr.warning('Debe Poner Documento');
 			return;
 		}
 		if (usuario_nuevo.usuario == undefined) {
-			alert('Debe poner usuario');
+				toastr.warning('Debe Poner Usuario');
 			return;
 		}
 			if (usuario_nuevo.password.length < 4) {
-			alert('Contraseña con mayor caracteres');
+				toastr.warning('Contraseña con mayor caracteres');
 			return;
 		}
 
 			if (usuario_nuevo.password == undefined) {
-			alert('Debe poner contraseña');
+				toastr.error('Contraseñas incorrectas');	
 			return;
 		}
 
 		console.log(usuario_nuevo);
 		if (usuario_nuevo.password != usuario_nuevo.password2) {
-			alert('iguaesl contraseña');
+			toastr.error('Contraseñas incorrectas');	
 			return;
 		}
 
@@ -62,9 +63,11 @@ $scope.usuario_nuevo = {
 		ConexionServ.query(consulta, [usuario_nuevo.nombres, usuario_nuevo.apellidos, usuario_nuevo.sexo, usuario_nuevo.tipo, usuario_nuevo.documento, usuario_nuevo.celular, fecha_nac, usuario_nuevo.usuario, usuario_nuevo.password]).then(function(result){
 			console.log('se cargo el usuario', result);
 				$scope.traer_datos()
+				toastr.success('Usuario Agregado');
 		}, function(tx){
 			console.log('error', tx);
 
+				toastr.error('Error al crear');	
 		});
 		$scope.ver2 = false;
 	}
@@ -76,7 +79,7 @@ $scope.usuario_nuevo = {
  
   }
   $scope.traer_datos = function(){
-	consulta = 'SELECT nombres, apellidos, sexo, tipo, documento, celular, fecha_nac, usuario, password, rowid from users WHERE eliminado = "0"'
+	consulta = 'SELECT id, nombres, apellidos, sexo, tipo, documento, celular, fecha_nac, usuario, password, rowid from users WHERE eliminado = "0" and id !=1'
 	ConexionServ.query(consulta, []).then(function(result){
 		$scope.usuarios = result;
 		for (var i = 0; i < $scope.usuarios.length; i++) {
@@ -101,6 +104,7 @@ $scope.usuario_nuevo = {
 			ConexionServ.query(consulta, [usuario.rowid]).then(function(result){
 				console.log('se elimino el usuario', result);
 					$scope.traer_datos()
+					toastr.success('Usuario Eliminado');
 			}, function(tx){
 				console.log('error', tx);
 			});
@@ -109,6 +113,7 @@ $scope.usuario_nuevo = {
 			ConexionServ.query(consulta, [usuario.rowid]).then(function(result){
 				console.log('se elimino el usuario en', result);
 					$scope.traer_datos()
+					toastr.success('Usuario Eliminado');
 			}, function(tx){
 				console.log('error', tx);
 			});
@@ -124,6 +129,8 @@ $scope.usuario_nuevo = {
    	$scope.ver = true;
    	usuario.fecha_nac = new Date(usuario.fecha_nac);
    	$scope.usuario_Editar = usuario;
+   	$location.hash('id-editar-usuario');
+	$anchorScroll();
 	
   }
     
@@ -131,6 +138,7 @@ $scope.usuario_nuevo = {
 
    	$scope.ver2 = false;
    	$scope.ver = false;
+   	$location.hash('');
 	
   }
     
@@ -148,6 +156,7 @@ $scope.usuario_nuevo = {
 		ConexionServ.query(consulta, [usuario_Editar.nombres, usuario_Editar.apellidos, usuario_Editar.sexo, usuario_Editar.tipo, usuario_Editar.documento, usuario_Editar.celular, fecha_nac, usuario_Editar.usuario, usuario_Editar.password, usuario_Editar.rowid]).then(function(result){
 			console.log('se cargo el usuario en la compu', result);
 				$scope.traer_datos()
+				toastr.success('Usuario Editado');
 		}, function(tx){
 			console.log('error', tx);
 		});
@@ -156,6 +165,7 @@ $scope.usuario_nuevo = {
 		ConexionServ.query(consulta, [usuario_Editar.nombres, usuario_Editar.apellidos, usuario_Editar.sexo, usuario_Editar.tipo, usuario_Editar.documento, usuario_Editar.celular, fecha_nac, usuario_Editar.usuario, usuario_Editar.password, "1", usuario_Editar.rowid]).then(function(result){
 			console.log('se cargo el usuario en la nube', result);
 				$scope.traer_datos()
+				toastr.success('Usuario Editado');
 		}, function(tx){
 			console.log('error', tx);
 		});

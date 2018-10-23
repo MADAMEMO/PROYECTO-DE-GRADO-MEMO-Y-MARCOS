@@ -1,6 +1,6 @@
 var app = angular.module('TaxisFast');
 
-app.controller('TaxistasCtrl', function($scope, $http, $filter, ConexionServ){
+app.controller('TaxistasCtrl', function($scope, $http, $filter, ConexionServ, $location, $anchorScroll){
 
 ConexionServ.createTables();
 
@@ -71,7 +71,7 @@ $scope.traer_datos()
  
   }
  $scope.traer_datos = function(){
-	consulta = 'SELECT nombres, apellidos, sexo, documento, celular, fecha_nac, usuario, password, rowid from taxistas where eliminado ="0"'
+	consulta = 'SELECT id, nombres, apellidos, sexo, documento, celular, fecha_nac, usuario, password, rowid from taxistas where eliminado ="0"'
 		ConexionServ.query(consulta, []).then(function(result){
 			$scope.taxistas = result;
 			for (var i = 0; i < $scope.taxistas.length; i++) {
@@ -90,7 +90,7 @@ $scope.traer_datos()
 	$scope.eliminar = function(taxista){
 		console.log(taxista)
 		if (taxista.id == null) {
-		consulta = 'DELETE FROM taxistas Where rowid=?'
+			consulta = 'DELETE FROM taxistas Where rowid=?'
 			ConexionServ.query(consulta, [taxista.rowid]).then(function(result){
 				console.log('se elimino el taxista en la compu', result);
 					$scope.traer_datos()
@@ -98,7 +98,7 @@ $scope.traer_datos()
 				console.log('error', tx);
 			});
 		} else {
-				consulta = 'UPDATE taxistas SET eliminado ="1"  Where rowid=?'
+			consulta = 'UPDATE taxistas SET eliminado ="1"  Where rowid=?'
 			ConexionServ.query(consulta, [taxista.rowid]).then(function(result){
 				console.log('se elimino el taxista en la nube', result);
 					$scope.traer_datos()
@@ -121,6 +121,8 @@ $scope.traer_datos()
    	$scope.ver = true;
    taxista.fecha_nac = new Date(taxista.fecha_nac);
    $scope.taxista_Editar = taxista;
+   		$location.hash('id-editar-taxista');
+		$anchorScroll();
 	
   }
     
@@ -128,6 +130,7 @@ $scope.traer_datos()
    
 	$scope.ver2 = false;
    	$scope.ver = false;
+   	$location.hash('');
   }
     
 	$scope.guardartaxista = function(taxista_Editar){
