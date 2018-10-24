@@ -11,6 +11,8 @@ app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ, US
 		zona: 'Z1',
 		fecha_ini: fecha,
 		fecha_fin: fecha,
+		lugar_inicio: '',
+		lugar_fin: '',
 		hora_ini: fecha,
 		hora_fin: fecha,
 		estado: 'En curso'

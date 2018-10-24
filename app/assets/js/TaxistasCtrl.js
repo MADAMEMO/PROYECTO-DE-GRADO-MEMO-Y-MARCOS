@@ -50,13 +50,16 @@ $scope.ver2 = false;
 			return;
 		}
 
-
-		fecha_nac = '' + taxista_nuevo.fecha_nac.getFullYear() + '-' + (taxista_nuevo.fecha_nac.getMonth() + 1) + '-' + (taxista_nuevo.fecha_nac.getDate() + 1);	
+		fecha_nac = '';
+		if (taxista_nuevo.fecha_nac) {
+			fecha_nac = '' + taxista_nuevo.fecha_nac.getFullYear() + '-' + (taxista_nuevo.fecha_nac.getMonth() + 1) + '-' + (taxista_nuevo.fecha_nac.getDate() + 1);	
+		}
+		
 
 		consulta = 'INSERT INTO taxistas (nombres, apellidos, sexo, documento, celular, fecha_nac, usuario, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?)'
 		ConexionServ.query(consulta, [taxista_nuevo.nombres, taxista_nuevo.apellidos, taxista_nuevo.sexo, taxista_nuevo.documento, taxista_nuevo.celular, fecha_nac, taxista_nuevo.usuario, taxista_nuevo.password]).then(function(result){
 			console.log('se cargo el taxista', result);
-$scope.traer_datos()
+			$scope.traer_datos()
 		}, function(tx){
 			console.log('error', tx);
 		});
@@ -70,13 +73,15 @@ $scope.traer_datos()
    } else{$scope.ver2 = false;}; 
  
   }
- $scope.traer_datos = function(){
-	consulta = 'SELECT id, nombres, apellidos, sexo, documento, celular, fecha_nac, usuario, password, rowid from taxistas where eliminado ="0"'
+  
+	$scope.traer_datos = function(){
+		consulta = 'SELECT id, nombres, apellidos, sexo, documento, celular, fecha_nac, usuario, password, rowid from taxistas where eliminado ="0"'
 		ConexionServ.query(consulta, []).then(function(result){
 			$scope.taxistas = result;
 			for (var i = 0; i < $scope.taxistas.length; i++) {
-				$scope.taxistas[i].fecha_nac = new Date($scope.taxistas[i].fecha_nac);
-				
+				if($scope.taxistas[i].fecha_nac){
+					$scope.taxistas[i].fecha_nac = new Date($scope.taxistas[i].fecha_nac);
+				}				
 			}
 			console.log('se subio el taxista', result);
 
@@ -85,6 +90,7 @@ $scope.traer_datos()
  
 		});
 	}
+	
 $scope.traer_datos()
 
 	$scope.eliminar = function(taxista){

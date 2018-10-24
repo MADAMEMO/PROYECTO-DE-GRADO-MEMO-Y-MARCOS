@@ -115,3 +115,10 @@ angular.module('TaxisFast', [
 	   $urlRouterProvider.otherwise('/login');	
 
 }])
+
+
+
+.constant('rutaServidor', {
+    //ruta: 'http://edilson.micolevirtual.com/feryz_server/public/'
+    ruta: 'http://192.168.100.31/feryz_server/public/'
+})

@@ -1,6 +1,6 @@
 var app = angular.module('TaxisFast');
 
-app.controller('nubeCtrl', function($scope, $http, $filter, ConexionServ){
+app.controller('nubeCtrl', function($scope, $http, $filter, ConexionServ, toastr, rutaServidor){
 
 
 	$scope.mostrardatos = false;
@@ -15,7 +15,7 @@ app.controller('nubeCtrl', function($scope, $http, $filter, ConexionServ){
 
 
 	$scope.descargar_datos = function (){
-		$http.get('http://edilson.micolevirtual.com/feryz_server/public/taxis/all'). then (function(result){
+		$http.get(rutaServidor.ruta + 'taxis/all').then (function(result){
 			taxis = result.data.taxis;
 			taxistas = result.data.taxistas;
 			usuarios = result.data.usuarios;
@@ -77,7 +77,7 @@ app.controller('nubeCtrl', function($scope, $http, $filter, ConexionServ){
 			usuarios: $scope.usuarios
 		}
 
-		$http.put('http://192.168.100.31/feryz_server/public/taxis/subir-datos', datos).then(function(result){
+		$http.put(rutaServidor.ruta + 'taxis/subir-datos', datos).then(function(result){
 			console.log(result);
 
 
