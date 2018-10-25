@@ -42,6 +42,20 @@ app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ, US
 
 
 	
+		$scope.selec_taxista = function(carrera_nuevo){
+
+		consulta = 'SELECT *, rowid FROM taxistas WHERE taxi_id =?';
+			ConexionServ.query(consulta, [carrera_nuevo.taxista]).then(function(result){
+				$scope.taxistas_seleccionar = result;
+			}, function(tx){
+				console.log('error', tx);
+			});
+
+
+	}
+
+
+	
 
 
 	$scope.guardarc = function(carrera_nuevo){

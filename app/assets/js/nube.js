@@ -25,8 +25,8 @@ app.controller('nubeCtrl', function($scope, $http, $filter, ConexionServ, toastr
 			 	taxis[i] 
 
 			 
-				consulta = 'INSERT INTO taxis ( id, numero, placa, taxista_id, propietario) VALUES( ?, ?, ?, ?, ?)'
-					ConexionServ.query(consulta, [taxis[i].id, taxis[i].numero, taxis[i].placa, taxis[i].taxista_id, taxis[i].propietario]).then(function(result){
+				consulta = 'INSERT INTO taxis ( id, rowid, numero, placa, taxista_id, propietario) VALUES( ?, ?, ?, ?, ?, ?)'
+					ConexionServ.query(consulta, [taxis[i].id, taxis[i].id, taxis[i].numero, taxis[i].placa, taxis[i].taxista_id, taxis[i].propietario]).then(function(result){
 						console.log('se cargo el taxi', result);
 					
 					}, function(tx){
@@ -37,8 +37,8 @@ app.controller('nubeCtrl', function($scope, $http, $filter, ConexionServ, toastr
 			 	taxistas[i] 
 
 			 
-				consulta = 'INSERT INTO taxistas (id,nombres, apellidos, sexo, documento, celular, usuario, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?)'
-		ConexionServ.query(consulta, [taxistas[i].id, taxistas[i].nombres, taxistas[i].apellidos, taxistas[i].sexo, taxistas[i].documento, taxistas[i].celular,taxistas[i].usuario, taxistas[i].password]).then(function(result){
+				consulta = 'INSERT INTO taxistas (id, rowid, nombres, apellidos, sexo, documento, celular, usuario, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)'
+		ConexionServ.query(consulta, [taxistas[i].id, taxistas[i].id, taxistas[i].nombres, taxistas[i].apellidos, taxistas[i].sexo, taxistas[i].documento, taxistas[i].celular,taxistas[i].usuario, taxistas[i].password]).then(function(result){
 			console.log('se cargo el taxista', result);
 	
 					}, function(tx){
@@ -50,8 +50,8 @@ app.controller('nubeCtrl', function($scope, $http, $filter, ConexionServ, toastr
 			 	carreras[i] 
 
 			 
-					consulta = 'INSERT INTO carreras (id, taxi_id, taxista_id, zona, fecha_ini, lugar_inicio, lugar_fin, fecha_fin, estado) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)'
-		ConexionServ.query(consulta, [carreras[i].id, carreras[i].taxi_id, carreras[i].taxista_id, carreras[i].zona, carreras[i].fecha_ini, carreras[i].lugar_ini, carreras[i].lugar_fin, carreras[i].fecha_fin, carreras[i].estado]).then(function(result){
+					consulta = 'INSERT INTO carreras (id, rowid, taxi_id, taxista_id, zona, fecha_ini, lugar_inicio, lugar_fin, fecha_fin, estado) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+		ConexionServ.query(consulta, [carreras[i].id, carreras[i].id, carreras[i].taxi_id, carreras[i].taxista_id, carreras[i].zona, carreras[i].fecha_ini, carreras[i].lugar_ini, carreras[i].lugar_fin, carreras[i].fecha_fin, carreras[i].estado]).then(function(result){
 			console.log('se guardo la carrera papi', result);
 					
 		
@@ -141,35 +141,16 @@ app.controller('nubeCtrl', function($scope, $http, $filter, ConexionServ, toastr
 				console.log('error', tx);
 			});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+				$scope.traer_datos()
+				$scope.traer_datos2()
+				$scope.traer_datos3()
+				$scope.traer_datos4()
+				$scope.mostrardatos = false;
 
 		}, function(error){
 			console.log('error db', error)
 		})
+		
 	}
 
 

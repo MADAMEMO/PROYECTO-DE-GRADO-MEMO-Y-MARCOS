@@ -57,7 +57,7 @@
 
                           <div class="col-sm-4">
 
-                            <ui-select ng-model="carrera_nuevo.taxista" style="width: 100%;" theme="bootstrap">
+                            <ui-select ng-model="carrera_nuevo.taxista" ng-click="select_taxista" style="width: 100%;" theme="bootstrap">
                               <ui-select-match placeholder="Taxista">
                                 <span ng-bind="$select.selected.nombres + ' ' + $select.selected.apellidos "></span>
                               </ui-select-match>
