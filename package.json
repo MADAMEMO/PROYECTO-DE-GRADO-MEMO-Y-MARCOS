@@ -9,6 +9,7 @@
     "build": "build --mac --win",
     "build-mac": "build --mac",
     "dist": "build -p always",
+    "never": "build -p never",
     "publish": "build --mac --win -p always",
     "postinstall": "install-app-deps"
   },
@@ -63,7 +64,7 @@
   "devDependencies": {
     "@angular/cli": "^6.0.5",
     "electron": "^2.0.8",
-    "electron-builder": "^20.26.0",
-    "electron-reload": "^1.2.2"
+    "electron-builder": "^20.28.2",
+    "electron-reload": "^1.2.5"
   }
 }

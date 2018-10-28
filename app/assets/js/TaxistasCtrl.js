@@ -52,7 +52,7 @@ $scope.ver2 = false;
 
 		fecha_nac = '';
 		if (taxista_nuevo.fecha_nac) {
-			fecha_nac = '' + taxista_nuevo.fecha_nac.getFullYear() + '-' + (taxista_nuevo.fecha_nac.getMonth() + 1) + '-' + (taxista_nuevo.fecha_nac.getDate() + 1);	
+			fecha_nac = '' + taxista_nuevo.fecha_nac.getFullYear() + '-' + (taxista_nuevo.fecha_nac.getMonth() + 1) + '-' + taxista_nuevo.fecha_nac.getDate();	
 		}
 		
 
@@ -141,8 +141,10 @@ $scope.traer_datos()
     
 	$scope.guardartaxista = function(taxista_Editar){
 
-		
-		fecha_nac = '' + taxista_Editar.fecha_nac.getFullYear() + '-' + (taxista_Editar.fecha_nac.getMonth() + 1) + '-' + taxista_Editar.fecha_nac.getDate() ;	
+		fecha_nac = '';
+		if (taxista_Editar.fecha_nac) {
+			fecha_nac = '' + taxista_Editar.fecha_nac.getFullYear() + '-' + (taxista_Editar.fecha_nac.getMonth() + 1) + '-' + taxista_Editar.fecha_nac.getDate();	
+		}
 
 		if (taxista_Editar.id == null) {
 					consulta = 'UPDATE taxistas SET  nombres=?, apellidos=?, sexo=?, documento=?, celular=?, fecha_nac=?, usuario=?, password=? where rowid=? '

@@ -4,6 +4,15 @@ app.controller('InformesCtrl', function($scope, $http, $filter, ConexionServ, Au
 
 ConexionServ.createTables();
 
+	$scope.imprimir = function() {
+		
+		const {ipcRenderer} = require('electron');
+		console.log(ipcRenderer);
+		window.print();
+    };
+
+
+
   
 $scope.ver = false;
 $scope.mesesito = false;

@@ -17,6 +17,18 @@ app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ, US
 		hora_fin: fecha,
 		estado: 'En curso'
 	};
+
+
+	$scope.carrera_Editar = {
+		zona: 'Z1',
+		fecha_ini: fecha,
+		fecha_fin: fecha,
+		lugar_inicio: '',
+		lugar_fin: '',
+		hora_ini: fecha,
+		hora_fin: fecha,
+		estado: 'En curso'
+	};
 	
 
 	$scope.ver = false;
@@ -42,17 +54,27 @@ app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ, US
 
 
 	
-		$scope.selec_taxista = function(carrera_nuevo){
 
-		consulta = 'SELECT *, rowid FROM taxistas WHERE taxi_id =?';
-			ConexionServ.query(consulta, [carrera_nuevo.taxista]).then(function(result){
-				$scope.taxistas_seleccionar = result;
+
+
+	$scope.select_taxista = function(carrera_nuevo){
+
+		consulta = 'SELECT *, rowid FROM taxistas WHERE rowid =?';
+			ConexionServ.query(consulta, [carrera_nuevo.taxi.taxista_id]).then(function(result){
+
+				if (result.length > 0) {
+					$scope.carrera_nuevo.taxista = result[0];
+				}
+				
 			}, function(tx){
 				console.log('error', tx);
 			});
 
 
 	}
+
+	
+
 
 
 	
@@ -124,27 +146,38 @@ $scope.traer_datos = function(){
 
 	$scope.traer_datos()
 
-	$scope.eliminar = function(carrera){
-		console.log(carrera)
-		if (carrera.id == null) {
-		consulta = 'DELETE FROM carreras Where rowid=?'
-			ConexionServ.query(consulta, [carrera.rowid]).then(function(result){
-				console.log('se elimino el carrera en la compu', result);
-					$scope.traer_datos()
-			}, function(tx){
-				console.log('error', tx);
-			});
-		} else {
-				consulta = 'UPDATE carreras SET eliminado ="1"  Where rowid=?'
-			ConexionServ.query(consulta, [carrera.rowid]).then(function(result){
-				console.log('se elimino el carrera en la nube', result);
-					$scope.traer_datos()
-			}, function(tx){
-				console.log('error', tx);
-			});
-		}	
-	}
+ $scope.eliminar = function(carrera) {
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Eliminar',
+     template: '¿Esta seguro de eliminar este carrera?'
+   });
 
+   confirmPopup.then(function(res) {
+     if(res) {
+              if (carrera.id == null) {
+        consulta = 'DELETE FROM carreras Where rowid=?'
+          ConexionServ.query(consulta, [carrera.rowid]).then(function(result){
+            console.log('se elimino el carrera en la compu', result);
+              $scope.traer_datos()
+      
+          }, function(tx){
+            console.log('error', tx);
+          });
+        } else {
+            consulta = 'UPDATE carreras SET eliminado ="1"  Where rowid=?'
+          ConexionServ.query(consulta, [carrera.rowid]).then(function(result){
+            console.log('se elimino el carrera en la nube', result);
+              $scope.traer_datos()
+              
+          }, function(tx){
+            console.log('error', tx);
+          });
+        } 
+     } else {
+       return;
+     }
+   });
+ };
 
 	$scope.mostrareditar = function(){
 		$scope.tablaeditar = true;
