@@ -1,6 +1,6 @@
 var app = angular.module('TaxisFast');
 
-app.controller('taxisCtrl', function($scope, $http, $filter, ConexionServ, $location, $anchorScroll){
+app.controller('taxisCtrl', function($scope, $http, $filter, ConexionServ, $location, $anchorScroll, $uibModal){
 
 ConexionServ.createTables();
 
@@ -74,25 +74,27 @@ $scope.ver2 = false;
 
 		});
 
-	$scope.eliminar = function(taxi){
-		console.log(taxi)
-		if (taxi.id == null) {
-		consulta = 'DELETE FROM taxis Where rowid=?'
-			ConexionServ.query(consulta, [taxi.rowid]).then(function(result){
-				console.log('se elimino el taxi en la compu', result);
-					$scope.traer_datos()
-			}, function(tx){
-				console.log('error', tx);
-			});
-		} else {
-				consulta = 'UPDATE taxis SET eliminado ="1"  Where rowid=?'
-			ConexionServ.query(consulta, [taxi.rowid]).then(function(result){
-				console.log('se elimino el taxi en la nube', result);
-					$scope.traer_datos()
-			}, function(tx){
-				console.log('error', tx);
-			});
-		}	
+		$scope.eliminar = function(taxi){
+		console.log('f')
+	    var modalInstance = $uibModal.open({
+			templateUrl: 'templates/taximodal.html',
+			controller: 'ModaltaxiCtrl',
+			resolve: {
+				elemento: function(){
+					return taxi;
+				}
+			}
+	    });
+
+	    modalInstance.result.then(function (selectedItem) {
+	      console.log(selectedItem);
+	      $scope.traer_datos();
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date() +'hola');
+	    });
+
+
+
 	}
 
 

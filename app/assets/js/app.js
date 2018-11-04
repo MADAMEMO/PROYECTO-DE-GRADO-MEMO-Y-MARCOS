@@ -47,14 +47,7 @@ angular.module('TaxisFast', [
 			templateUrl: 'templates/taxistas.html'
 
 		})
-		.state('panel.modal_eliminar',{
-			name: 'eliminar',
-			url: '/eliminar',
-			controller: 'ModalControlUserCtrl',
-			templateUrl: 'templates/modal_eliminado.html'
-
-		})
-
+				
 		.state('panel.nube',{
 			name: 'nube',
 			url: '/nube',

@@ -1,7 +1,7 @@
 
 var app = angular.module('TaxisFast');
 
-app.controller('UsuariosCtrl', function($scope, $http, $filter, ConexionServ, $location, $anchorScroll,toastr){
+app.controller('UsuariosCtrl', function($scope, $http, $filter, ConexionServ, $location, $anchorScroll,toastr, $uibModal){
 
 ConexionServ.createTables();
 
@@ -78,7 +78,7 @@ $scope.usuario_nuevo = {
  
   }
   $scope.traer_datos = function(){
-	consulta = 'SELECT *, rowid from users WHERE eliminado = "0" and id != null'
+	consulta = 'SELECT *, rowid from users WHERE eliminado = "0" and rowid != "1"'
 	ConexionServ.query(consulta, []).then(function(result){
 		$scope.usuarios = result;
 		for (var i = 0; i < $scope.usuarios.length; i++) {
@@ -97,31 +97,31 @@ $scope.usuario_nuevo = {
 
 
 	$scope.eliminar = function(usuario){
-		console.log(usuario)
-		if (usuario.id == null) {
-		consulta = 'DELETE FROM users Where rowid=?'
-			ConexionServ.query(consulta, [usuario.rowid]).then(function(result){
-				console.log('se elimino el usuario', result);
-					$scope.traer_datos()
-					toastr.success('Usuario Eliminado');
-			}, function(tx){
-				console.log('error', tx);
-			});
-		} else {
-				consulta = 'UPDATE users SET eliminado ="1"  Where rowid=?'
-			ConexionServ.query(consulta, [usuario.rowid]).then(function(result){
-				console.log('se elimino el usuario en', result);
-					$scope.traer_datos()
-					toastr.success('Usuario Eliminado');
-			}, function(tx){
-				console.log('error', tx);
-			});
-		}	
+		console.log('f')
+	    var modalInstance = $uibModal.open({
+			templateUrl: 'templates/usuariomodal.html',
+			controller: 'ModalInstanceCtrl',
+			resolve: {
+				elemento: function(){
+					return usuario;
+				}
+			}
+	    });
+
+	    modalInstance.result.then(function (selectedItem) {
+	      console.log(selectedItem);
+	      $scope.traer_datos();
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date() +'hola');
+	    });
+
+
+
 	}
 
 	$scope.mostrareditar = function(){
 		$scope.tablaeditar = true;
-	}
+		}
 
   $scope.editar = function(usuario){
    
@@ -174,3 +174,5 @@ $scope.usuario_nuevo = {
 	}	
 
 });
+
+

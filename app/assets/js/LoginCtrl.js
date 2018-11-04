@@ -10,6 +10,7 @@ ConexionServ.createTables();
 	
 		AuthServ.loguear(usu).then(function(){
 			$state.go('panel');
+			toastr.success('Bienvenido');
 		}, function(err){
 			toastr.error('Datos inválidados');
 		});

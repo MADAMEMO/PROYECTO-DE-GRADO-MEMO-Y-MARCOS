@@ -1,7 +1,7 @@
 var app = angular.module('TaxisFast');
 
-app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ, USER, $location, $anchorScroll){
-	console.log(usu);
+app.controller('CarrerasCtrl', function($scope, $http, $filter, ConexionServ, USER, $location, $anchorScroll, $uibModal){
+console.log(usu);
 
 	ConexionServ.createTables();
 
@@ -146,38 +146,30 @@ $scope.traer_datos = function(){
 
 	$scope.traer_datos()
 
- $scope.eliminar = function(carrera) {
-   var confirmPopup = $ionicPopup.confirm({
-     title: 'Eliminar',
-     template: '¿Esta seguro de eliminar este carrera?'
-   });
 
-   confirmPopup.then(function(res) {
-     if(res) {
-              if (carrera.id == null) {
-        consulta = 'DELETE FROM carreras Where rowid=?'
-          ConexionServ.query(consulta, [carrera.rowid]).then(function(result){
-            console.log('se elimino el carrera en la compu', result);
-              $scope.traer_datos()
-      
-          }, function(tx){
-            console.log('error', tx);
-          });
-        } else {
-            consulta = 'UPDATE carreras SET eliminado ="1"  Where rowid=?'
-          ConexionServ.query(consulta, [carrera.rowid]).then(function(result){
-            console.log('se elimino el carrera en la nube', result);
-              $scope.traer_datos()
-              
-          }, function(tx){
-            console.log('error', tx);
-          });
-        } 
-     } else {
-       return;
-     }
-   });
- };
+	$scope.eliminar = function(carrera){
+		console.log('f')
+	    var modalInstance = $uibModal.open({
+			templateUrl: 'templates/carreramodal.html',
+			controller: 'ModalcarreraCtrl',
+			resolve: {
+				elemento: function(){
+					return carrera;
+				}
+			}
+	    });
+
+	    modalInstance.result.then(function (selectedItem) {
+	      console.log(selectedItem);
+	      $scope.traer_datos();
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date() +'hola');
+	    });
+
+
+
+	}
+
 
 	$scope.mostrareditar = function(){
 		$scope.tablaeditar = true;
@@ -252,7 +244,7 @@ $scope.modificarcarrera =function(carrera){
 
 	$scope.en_curso = function(carrera_estado){
 
-		consulta = 'UPDATE carreras SET estado=? where rowid=? '
+		consulta = 'UPDATE carreras SET estado=?,  modificado="1" where rowid=? '
 		ConexionServ.query(consulta, ['En curso', carrera_estado.rowid]).then(function(result){
 			console.log('se cargo la carrera', result);
 
@@ -266,7 +258,7 @@ $scope.modificarcarrera =function(carrera){
 
 $scope.finalizada = function(carrera_estado){
 
-consulta = 'UPDATE carreras SET estado=? where rowid=? '
+consulta = 'UPDATE carreras SET estado=?,  modificado="1" where rowid=? '
 		ConexionServ.query(consulta, ['Finalizada', carrera_estado.rowid]).then(function(result){
 			console.log('se cargo la carrera', result);
 							carrera_estado.estado = 'Finalizada';
@@ -279,7 +271,7 @@ consulta = 'UPDATE carreras SET estado=? where rowid=? '
 
 $scope.cancelada = function(carrera_estado){
 
-consulta = 'UPDATE carreras SET estado=? where rowid=? '
+consulta = 'UPDATE carreras SET estado=?,  modificado="1" where rowid=? '
 		ConexionServ.query(consulta, ['Cancelada', carrera_estado.rowid]).then(function(result){
 			console.log('se cargo la carrera', result);
 					carrera_estado.estado = 'Cancelada';
