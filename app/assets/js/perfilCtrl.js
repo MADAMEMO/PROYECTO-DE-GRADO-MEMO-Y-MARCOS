@@ -17,8 +17,8 @@ $scope.USER = USER;
 
 	$scope.GUARDARUSUARIO = function(usu){
 			fecha_nac = '' + usu.fecha_nac.getFullYear() + '-' + (usu.fecha_nac.getMonth() + 1) + '-' + usu.fecha_nac.getDate();
-		consulta = 'UPDATE users SET  nombres=?, apellidos=?, sexo=?, documento=?, celular=?, fecha_nac=? where rowid=?'
-		ConexionServ.query(consulta, [usu.nombres,usu.apellidos, usu.sexo, usu.documento, usu.celular,fecha_nac,  usu.rowid]).then(function(result){
+		consulta = 'UPDATE users SET  nombres=?, apellidos=?, sexo=?, documento=?, celular=?, fecha_nac=?, modificado=? where rowid=?'
+		ConexionServ.query(consulta, [usu.nombres,usu.apellidos, usu.sexo, usu.documento, usu.celular,fecha_nac, "1", usu.rowid]).then(function(result){
 			console.log('se cargo el usuario', result);
 			AuthServ.update_user_storage(usu);
 			toastr.success('Guardado con éxito', 'Guardado');
@@ -41,8 +41,8 @@ $scope.USER = USER;
 		
 		AuthServ.loguear(datos).then(function(){
 			
-			consulta = 'UPDATE users SET password=? WHERE rowid=?';
-			ConexionServ.query(consulta, [passwords.nuevo, $scope.USER.rowid]).then(function(){
+			consulta = 'UPDATE users SET password=?, modificado=? WHERE rowid=?';
+			ConexionServ.query(consulta, [passwords.nuevo, "1", $scope.USER.rowid]).then(function(){
 				toastr.success('Contraseña cambiada');
 			}, function(){
 				toastr.error('Contraseña NO cambiada');

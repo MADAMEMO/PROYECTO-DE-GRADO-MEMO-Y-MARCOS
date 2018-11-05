@@ -17,16 +17,39 @@
         </div>
     </div>
 
+
+        
+    
+
     <div class="content mt-3">
 
         <div class="col-sm-12">
-            
+          
 
-    <div class="row" >
-      <iframe   class="col-sm-12" src="https://www.google.com/maps/d/embed?mid=1JIuiF72NJXdkNhAAqOYqtaMthAJwiknk" width="640" height="480"></iframe>
-    </div>
-       
+                     <div class="row">
+                          <div class="col-sm-1">Taxi: </div>
 
-    </DIV>
+                          <div class="col-sm-4">
+
+                            <ui-select ng-model="data.taxi_selec" style="width: 100%;" theme="bootstrap">
+                              <ui-select-match placeholder="Taxi">
+                                <span ng-bind="$select.selected.rowid + ' (' + $select.selected.numero + ')'"></span>
+                              </ui-select-match>
+                              <ui-select-choices repeat="item in  taxis |  filter: $select.search track by $index">
+                                <span ng-bind-html="item.rowid + ' (' + item.numero + ')' | highlight: $select.search"></span>
+                              </ui-select-choices>
+                            </ui-select>
+                            
+                          </div>
+                          <button ng-click="ubicacion()" class="col-sm-4 btn btn-info">Mostrar Ubicacion</button>
+                          <hr>
+                        </div>  
+<hr>
+
+                  
+        </div>
+        <div>
+          <div  class="col-sm-12" id="map" style="height:400px">MAPA</div>
+        </div>
     
 </div>
