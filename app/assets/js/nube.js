@@ -152,7 +152,7 @@ app.controller('nubeCtrl', function($scope, $http, $filter, ConexionServ, toastr
 			ConexionServ.query(consulta, []).then(function(result){
 				console.log('se elimino el usuario', result);
 					$scope.traer_datos()
-					toastr.success('Usuario Eliminado');
+					toastr.success('Datos Subidos');
 			}, function(tx){
 				console.log('error', tx);
 			});
