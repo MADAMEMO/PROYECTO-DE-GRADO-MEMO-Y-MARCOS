@@ -2290,5 +2290,16 @@ header .form-inline {
   display: inline-block !important;
 }
 
+.img-genero{
+  cursor: pointer;
+  
+}
+
+.caja-genero{
+  background-color: #eee; 
+}
+.caja-genero:hover{
+  background-color: #eee; 
+}
 
 

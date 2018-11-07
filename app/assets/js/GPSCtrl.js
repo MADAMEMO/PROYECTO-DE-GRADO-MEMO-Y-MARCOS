@@ -36,7 +36,7 @@ app.controller('GPSCtrl', function($scope, $http, $filter, ConexionServ, AuthSer
 
 				var marker = new google.maps.Marker({
 				    position: {lat: $scope.posicion.latitud, lng: $scope.posicion.longitud},
-				    title: "Taxi: " + $scope.posicion.Nombre_taxi + ""
+				    title: "Taxi: " + $scope.posicion.Nombre_taxi + " Fecha: "+ $scope.posicion.fecha_hora   +"  "
 				});
 				marker.setMap(map);
 

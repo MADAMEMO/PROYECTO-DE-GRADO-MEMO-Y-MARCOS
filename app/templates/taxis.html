@@ -68,8 +68,8 @@
                         </div>
 
                         <br>
-                        <button type="submit">Guardar</button> 
-                        <button type="button" ng-click="cancelar()">Atras</button>
+                        <button class="btn btn-info" type="submit">Guardar</button> 
+                        <button class="btn btn-info" type="button" ng-click="cancelar()">Atras</button>
                     </form>
                 </div>
             </div>
@@ -84,7 +84,7 @@
 
 
                 <div class="content mt-3">
-                    <button   class="btn btn-primary"  ng-click="mostrartabla()">CREAR TAXI</button>
+                    <button   class="btn btn-primary"  ng-show="ocultarboton" ng-click="mostrartabla()">CREAR TAXI</button>
                     <hr>
                     <div class="card">
                         <div class="card-header">
@@ -175,8 +175,8 @@
                     <input  placeholder="Seguro" class="col-sm-4 form-control" type="text"  ng-model="taxi_Editar.Seguro" name="">
                   </div>
                   <br>
-                  <button  ng-click="guardartaxi(taxi_Editar)" >Editar</button> 
-                  <button ng-click="cancelar()">Atras</button>
+                  <button class="btn btn-info"  ng-click="guardartaxi(taxi_Editar)" >Editar</button> 
+                  <button class="btn " ng-click="cancelar()">Atras</button>
               </form>
           </div>
         </div>

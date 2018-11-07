@@ -5,8 +5,26 @@ app.controller('UsuariosCtrl', function($scope, $http, $filter, ConexionServ, $l
 
 ConexionServ.createTables();
 
+
+	$scope.ocultarboton = true;
+    $scope.color_seleccion1 = false;
+    $scope.color_seleccion2 = false;
+
+
 $scope.ver = false;
 $scope.ver2 = false;
+
+	$scope.caja_genero1 = function(opcion){
+		$scope.color_seleccion1 = true;
+		$scope.color_seleccion2 = false;
+		$scope.opcion = opcion;
+	}
+
+	$scope.caja_genero2 = function(opcion){
+		$scope.color_seleccion1 = false;
+		$scope.color_seleccion2 = true;
+		$scope.opcion = opcion;
+	}
 
 $scope.usuario_nuevo = {
 	password: '',
@@ -23,8 +41,10 @@ $scope.usuario_nuevo = {
 				toastr.warning('Debe Poner Apellidos');
 			return;
 		}
-		if (usuario_nuevo.sexo == undefined) {
+
+		if ($scope.opcion == undefined) {
 				toastr.warning('Debe Poner Sexo');
+				console.log(usuario_nuevo, $scope.opcion)
 			return;
 		}
 		if (usuario_nuevo.tipo == undefined) {
@@ -33,6 +53,10 @@ $scope.usuario_nuevo = {
 		}
 		if (usuario_nuevo.documento == undefined) {
 				toastr.warning('Debe Poner Documento');
+			return;
+		}
+			if (usuario_nuevo.apellidos == undefined) {
+				toastr.warning('Debe Poner Apellidos');
 			return;
 		}
 		if (usuario_nuevo.usuario == undefined) {
@@ -56,10 +80,14 @@ $scope.usuario_nuevo = {
 		}
 
 		
+		fecha_nac = '';
+		if (usuario_nuevo.fecha_nac) {
+			fecha_nac = '' + usuario_nuevo.fecha_nac.getFullYear() + '-' + (usuario_nuevo.fecha_nac.getMonth() + 1) + '-' + usuario_nuevo.fecha_nac.getDate();	
+		}
+		console.log(fecha_nac)
 
-		fecha_nac = '' + usuario_nuevo.fecha_nac.getFullYear() + '-' + (usuario_nuevo.fecha_nac.getMonth() + 1) + '-' + usuario_nuevo.fecha_nac.getDate();
 		consulta = 'INSERT INTO users (nombres, apellidos, sexo, tipo, documento, celular, fecha_nac, usuario, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)'
-		ConexionServ.query(consulta, [usuario_nuevo.nombres, usuario_nuevo.apellidos, usuario_nuevo.sexo, usuario_nuevo.tipo, usuario_nuevo.documento, usuario_nuevo.celular, fecha_nac, usuario_nuevo.usuario, usuario_nuevo.password]).then(function(result){
+		ConexionServ.query(consulta, [usuario_nuevo.nombres, usuario_nuevo.apellidos, $scope.opcion, usuario_nuevo.tipo, usuario_nuevo.documento, usuario_nuevo.celular, fecha_nac, usuario_nuevo.usuario, usuario_nuevo.password]).then(function(result){
 			console.log('se cargo el usuario', result);
 				$scope.traer_datos()
 				toastr.success('Usuario Agregado');
@@ -76,6 +104,7 @@ $scope.usuario_nuevo = {
    	$scope.ver2 = true;
    } else{$scope.ver2 = false;}; 
  
+ 		$scope.ocultarboton = !$scope.ocultarboton;
   }
   $scope.traer_datos = function(){
 	consulta = 'SELECT *, rowid from users WHERE eliminado = "0" and rowid != "1"'
@@ -138,6 +167,8 @@ $scope.usuario_nuevo = {
    	$scope.ver2 = false;
    	$scope.ver = false;
    	$location.hash('');
+   	
+ 		$scope.ocultarboton = !$scope.ocultarboton;
 	
   }
     
@@ -152,7 +183,7 @@ $scope.usuario_nuevo = {
 		
 		if (usuario_Editar.id == null) {
 				consulta = 'UPDATE users SET  nombres=?, apellidos=?, sexo=?, tipo=?, documento=?, celular=?, fecha_nac=?, usuario=?, password=? where rowid=? '
-		ConexionServ.query(consulta, [usuario_Editar.nombres, usuario_Editar.apellidos, usuario_Editar.sexo, usuario_Editar.tipo, usuario_Editar.documento, usuario_Editar.celular, fecha_nac, usuario_Editar.usuario, usuario_Editar.password, usuario_Editar.rowid]).then(function(result){
+		ConexionServ.query(consulta, [usuario_Editar.nombres, usuario_Editar.apellidos, $scope.opcion, usuario_Editar.tipo, usuario_Editar.documento, usuario_Editar.celular, fecha_nac, usuario_Editar.usuario, usuario_Editar.password, usuario_Editar.rowid]).then(function(result){
 			console.log('se cargo el usuario en la compu', result);
 				$scope.traer_datos()
 				toastr.success('Usuario Editado');
@@ -161,7 +192,7 @@ $scope.usuario_nuevo = {
 		});
 	}  else {
 			consulta = 'UPDATE users SET  nombres=?, apellidos=?, sexo=?, tipo=?, documento=?, celular=?, fecha_nac=?, usuario=?, password=?, modificado=? where rowid=? '
-		ConexionServ.query(consulta, [usuario_Editar.nombres, usuario_Editar.apellidos, usuario_Editar.sexo, usuario_Editar.tipo, usuario_Editar.documento, usuario_Editar.celular, fecha_nac, usuario_Editar.usuario, usuario_Editar.password, "1", usuario_Editar.rowid]).then(function(result){
+		ConexionServ.query(consulta, [usuario_Editar.nombres, usuario_Editar.apellidos, $scope.opcion, usuario_Editar.tipo, usuario_Editar.documento, usuario_Editar.celular, fecha_nac, usuario_Editar.usuario, usuario_Editar.password, "1", usuario_Editar.rowid]).then(function(result){
 			console.log('se cargo el usuario en la nube', result);
 				$scope.traer_datos()
 				toastr.success('Usuario Editado');

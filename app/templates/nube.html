@@ -215,5 +215,13 @@
 
   <BUtton class="btn btn-info btn-lg" ng-click="descargar_datos()">Descargar Datos</button>
     <button type="button" ng-click="basededatos()" class="btn btn-primary btn-lg">Subir Datos</button>
+   <button type="button" ng-click="eliminar_todo()" class="btn btn-danger btn-lg">Eliminar Datos</button>
+
 </div>
+ <hr>
+ <hr>
+  <div style="height: 20px" class="progress" ng-show="BARRA_CREA">
+    <div class="progress-bar" role="progressbar" style="width: {{progreso_barra}}%;" aria-valuenow="{{progreso_barra}}" aria-valuemin="0" aria-valuemax="100">{{progreso_barra}}%</div>
+  </div>
+ 
 </div>

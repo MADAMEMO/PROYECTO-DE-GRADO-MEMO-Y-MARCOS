@@ -4,6 +4,7 @@ app.controller('taxisCtrl', function($scope, $http, $filter, ConexionServ, $loca
 
 ConexionServ.createTables();
 
+	$scope.ocultarboton = true;
 $scope.ver = false;
 $scope.ver2 = false;
 
@@ -47,7 +48,11 @@ $scope.ver2 = false;
    	$scope.ver2 = true;
    } else{$scope.ver2 = false;}; 
  
+
+ 		$scope.ocultarboton = !$scope.ocultarboton;
   }
+
+
  $scope.traer_datos = function(){ 
 
 	consulta = 'SELECT t.*, t.rowid, c.nombres, c.apellidos 	from taxis t INNER JOIN taxistas c ON t.taxista_id = c.rowid where t.eliminado ="0"'
@@ -120,6 +125,8 @@ $scope.ver2 = false;
 	$scope.ver2 = false;
    	$scope.ver = false;
    	$location.hash('');
+   	
+ 		$scope.ocultarboton = !$scope.ocultarboton;
 	
   }
     

@@ -1,5 +1,6 @@
 
 
+
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
@@ -39,11 +40,25 @@
                        <div class="col-sm-2">Apellidos: </div>
                         <input  placeholder="Apellidos" class="col-sm-4 form-control" type="text"  ng-model="usuario_nuevo.apellidos"  name="">
                       </div>
-                      <div class="row">
-                      <div class="col-sm-2">Sexo: </div> 
-                       <input type="radio" name="gender" value="M" ng-model="usuario_nuevo.sexo">Masculino<br>
-                           <input type="radio" name="gender" value="F" ng-model="usuario_nuevo.sexo">Femenino<br>
-                      </div>
+
+
+                    <div class="row">
+                           <div class="col-sm-2">Sexo: </div> 
+                          <div class="col-md-9 col-form-label">
+                            <div name="sa" class="form-check form-check-inline mr-1 " ng-model="usuario_nuevo.sexo"  value="M" type= "radio" ng-class="{ 'caja-genero': color_seleccion1==true  }" ng-click="caja_genero1('M')" >
+                              <img src="images/male1.png" class="img-genero" style="width: 100px;" for="inline-masculino-crear">
+                            </div>
+                            <div name="sa" class="form-check form-check-inline mr-1" ng-model="usuario_nuevo.sexo" value="F" type = "radio" ng-class="{ 'caja-genero': color_seleccion2==true  }"   ng-click="caja_genero2('F')">
+                               <img src="images/female1.png" class="img-genero" style="width: 100px;" for="inline-femenino-crear">
+                             
+                            </div>
+                          </div>
+                        </div>
+
+               
+
+
+
                         <div class="row">
                           <div class="col-sm-2">Tipo: </div> 
                        <input type="radio" name="sa" value="Admin" ng-model="usuario_nuevo.tipo">Administrador<br>
@@ -77,7 +92,7 @@
                           <input  placeholder="Contraseña" class="col-sm-4 form-control" type="password" ng-model="usuario_nuevo.password2"  name="">
                       </div>
                       <br>
-                        <button  ng-click="CREARUSUARIO(usuario_nuevo)" >Guardar</button> <button ng-click="cancelar()">Atrás</button>
+                        <button  class="btn btn-info" ng-click="CREARUSUARIO(usuario_nuevo)" >Guardar</button> <button class="btn" ng-click="cancelar()">Atrás</button>
                     </form>
                   </div>
                 </div>
@@ -88,7 +103,7 @@
 
                 <div class="content mt-3">
 
-          <button   class="btn btn-primary"  ng-click="mostrartabla()">Crear Usuario</button>
+          <button   class="btn btn-primary" ng-show="ocultarboton" ng-click="mostrartabla()">Crear Usuario</button>
 
 
 
@@ -162,11 +177,25 @@
                          <div class="col-sm-2">Apellidos: </div>
                           <input  placeholder="Apellidos" class="col-sm-4 form-control" type="text"  ng-model="usuario_Editar.apellidos"  name="">
                         </div>
-                          <div class="row">
-                      <div class="col-sm-2">Sexo: </div> 
-                       <input type="radio" name="gender" value="M" ng-model="usuario_Editar.sexo">Masculino<br>
-                           <input type="radio" name="gender" value="F" ng-model="usuario_Editar.sexo">Femenino<br>
-                      </div>
+
+
+
+                      
+                    <div class="row">
+                           <div class="col-sm-2">Sexo: </div> 
+                          <div class="col-md-9 col-form-label">
+                            <div name="sa" class="form-check form-check-inline mr-1 " ng-model="usuario_Editar.sexo"  value="M" type= "radio" ng-class="{ 'caja-genero': color_seleccion1==true  }" ng-click="caja_genero1('M')" >
+                              <img src="images/male1.png" class="img-genero" style="width: 100px;" for="inline-masculino-crear">
+                            </div>
+                            <div name="sa" class="form-check form-check-inline mr-1" ng-model="usuario_Editar.sexo" value="F" type = "radio" ng-class="{ 'caja-genero': color_seleccion2==true  }"   ng-click="caja_genero2('F')">
+                               <img src="images/female1.png" class="img-genero" style="width: 100px;" for="inline-femenino-crear">
+                             
+                            </div>
+                          </div>
+                        </div>
+
+
+                      
                       <div class="row">
                           <div class="col-sm-2">Tipo: </div> 
                        <input type="radio" name="sa" value="Admin" ng-model="usuario_Editar.tipo">Administrador<br>
@@ -196,7 +225,7 @@
                         </div>
                  
                         <br>
-                          <button  ng-click="GUARDARUSUARIO(usuario_Editar)" >Editar</button> <button ng-click="cancelar()">Atras</button>
+                          <button class="btn btn-info" ng-click="GUARDARUSUARIO(usuario_Editar)" >Editar</button> <button class="btn btn-cancel" ng-click="cancelar()">Atras</button>
                       </form>
                     </div>
                   </div>
