@@ -1,6 +1,6 @@
 var app = angular.module('TaxisFast');
 
-app.controller('nubeCtrl', function($scope, $http, $filter, ConexionServ, toastr, rutaServidor){
+app.controller('nubeCtrl', function($scope, $http, $filter, ConexionServ, toastr, rutaServidor, $uibModal){
 
 
 	$scope.mostrardatos = false;
@@ -290,47 +290,23 @@ app.controller('nubeCtrl', function($scope, $http, $filter, ConexionServ, toastr
 
 	$scope.eliminar_todo = function(){
 
-		 consulta = 'DELETE FROM taxis'
-      ConexionServ.query(consulta, []).then(function(result){
-        console.log('se elimino el elemento', result);
-          
+		console.log('f')
+	    var modalInstance = $uibModal.open({
+			templateUrl: 'templates/nubemodal.html',
+			controller: 'ModalnubeCtrl',
+			resolve: {
+				elemento: function(){
+					return;
+				}
+			}
+	    });
+	    modalInstance.result.then(function (selectedItem) {
+	      console.log(selectedItem);
+	      $scope.traer_datos();
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date() +'hola');
+	    });
 
-         
-          console.log('dato eliminado en la compu')
-      }, function(tx){
-        console.log('error', tx);
-      });
-
-       consulta = 'DELETE FROM taxistas'
-      ConexionServ.query(consulta, []).then(function(result){
-        console.log('se elimino el elemento', result);
-          
-      
-          console.log('dato eliminado en la compu')
-      }, function(tx){
-        console.log('error', tx);
-      });
-
-       consulta = 'DELETE FROM carreras'
-      ConexionServ.query(consulta, []).then(function(result){
-        console.log('se elimino el elemento', result);
-          
-    
-         
-          console.log('dato eliminado en la compu')
-      }, function(tx){
-        console.log('error', tx);
-      });
-
-       consulta = 'DELETE FROM users'
-      ConexionServ.query(consulta, []).then(function(result){
-        console.log('se elimino el elemento', result);
-      
-        
-          console.log('dato eliminado en la compu')
-      }, function(tx){
-        console.log('error', tx);
-      });
 
 
 	}
